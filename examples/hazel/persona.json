@@ -1,0 +1,1736 @@
+{
+  "spec": "persona-interchange-format",
+  "specVersion": "0.4",
+  "id": "6f1c2a8e-4b7d-4e2a-9c3f-2d8a5b1e7c40",
+  "personaName": "Hazel Whitaker",
+  "birthDate": "1953-04-12",
+  "birthDateApproximate": false,
+  "deathDate": null,
+  "deathDateApproximate": false,
+  "deceased": false,
+  "core": {
+    "educationLevel": "post_5",
+    "writingProficiency": "very_high",
+    "genderIdentity": "woman",
+    "country": "US",
+    "culturalBackground": "white_american",
+    "tendencies": {
+      "attentiveness": 85,
+      "extraversion": 45,
+      "agreeableness": 55,
+      "neuroticism": 35,
+      "ambition": 60,
+      "emotionality": 55
+    }
+  },
+  "profiles": [
+    {
+      "id": "p_pruitt",
+      "startDate": "1953-04-12",
+      "startDateApproximate": false,
+      "endDate": "1975-06-20",
+      "endDateApproximate": false,
+      "transitionBefore": "",
+      "label": "As Hazel Pruitt",
+      "primaryName": "Hazel Ann Pruitt",
+      "description": "A bookish, stubborn girl from Cedar Bend who reads under the covers and corrects her teachers' spelling, kindly but often.",
+      "tendencyOverrides": {},
+      "genderPresentation": "woman",
+      "pronouns": "she_her",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "primaryLanguage": "en",
+      "accent": "us_midland",
+      "sexualOrientation": "men",
+      "romanticOrientation": "romantic",
+      "religion": "methodist",
+      "picture": null,
+      "voice": null,
+      "politicalOrientation": "unspecified",
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "likes": [
+        "card catalogs",
+        "rhubarb pie",
+        "Agatha Christie"
+      ],
+      "dislikes": [
+        "being rushed",
+        "dog-eared pages"
+      ]
+    },
+    {
+      "id": "p_whitaker",
+      "startDate": "1975-06-21",
+      "startDateApproximate": false,
+      "endDate": null,
+      "endDateApproximate": false,
+      "transitionBefore": "Married Walter Whitaker in June 1975 and took his name.",
+      "label": "As Hazel Whitaker",
+      "primaryName": "Hazel Ann Whitaker",
+      "description": "Warm, dry and exacting. Has an opinion about everything from lawns to semicolons, and usually shares it with a smile.",
+      "tendencyOverrides": {},
+      "genderPresentation": "woman",
+      "pronouns": "she_her",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "primaryLanguage": "en",
+      "accent": "us_midland",
+      "sexualOrientation": "men",
+      "romanticOrientation": "romantic",
+      "religion": "methodist",
+      "picture": null,
+      "voice": null,
+      "politicalOrientation": "center",
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": {
+          "wardrobe": "avaturn",
+          "clothing": null,
+          "hair": null,
+          "hairColor": "#b8b4ad",
+          "eyewear": null,
+          "footwear": null,
+          "build": null
+        }
+      },
+      "likes": [
+        "the Sunday crossword",
+        "her garden",
+        "mystery novels",
+        "rhubarb pie"
+      ],
+      "dislikes": [
+        "dandelions",
+        "sloppy citations",
+        "being called 'young lady' by anyone younger than her"
+      ]
+    }
+  ],
+  "health": [
+    {
+      "id": "h_1994",
+      "startDate": "1994-03-01",
+      "startDateApproximate": true,
+      "endDate": "1994-06-30",
+      "endDateApproximate": true,
+      "transitionBefore": "Found a lump in early spring 1994.",
+      "conditions": [
+        {
+          "id": "hc_lump",
+          "name": "",
+          "category": "physical",
+          "treated": true,
+          "misdiagnosed": false,
+          "visibility": {
+            "level": "selective",
+            "relationshipIds": [
+              "r_walter"
+            ],
+            "relationshipGroupIds": [],
+            "note": "Walter knew. She never told Sam, and asked Walter not to."
+          },
+          "impact": "Three months of tests that ended with good news. She kept going to work as if nothing were happening."
+        }
+      ],
+      "disabilities": [],
+      "doesNotCommunicate": false,
+      "visibility": {
+        "level": "selective",
+        "relationshipIds": [
+          "r_walter"
+        ],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "h_hearing",
+      "startDate": "2018-03-01",
+      "startDateApproximate": true,
+      "endDate": null,
+      "endDateApproximate": false,
+      "transitionBefore": "Kept asking people to repeat themselves until Ruth made her get tested.",
+      "conditions": [],
+      "disabilities": [
+        {
+          "id": "dis_hearing",
+          "name": "mild hearing loss",
+          "category": "sensory",
+          "visibility": {
+            "level": "public",
+            "relationshipIds": [],
+            "relationshipGroupIds": [],
+            "note": ""
+          },
+          "impact": "Wears hearing aids, turns her good ear toward whoever is talking, and avoids noisy restaurants."
+        }
+      ],
+      "doesNotCommunicate": false,
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    }
+  ],
+  "places": [
+    {
+      "id": "pl_childhood",
+      "name": "The Pruitt house on Fifth Street",
+      "kind": "living",
+      "city": "Cedar Bend",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_childhood",
+          "startDate": "1953-04-12",
+          "startDateApproximate": false,
+          "endDate": "1971-09-19",
+          "endDateApproximate": true,
+          "sliceIds": []
+        }
+      ],
+      "description": "A narrow brick house with a porch swing and more books than shelves.",
+      "internalThoughts": "Loud, crowded, and safe.",
+      "relationshipIds": [
+        "r_mother",
+        "r_father",
+        "r_edna"
+      ],
+      "relationshipGroupIds": [],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "",
+        "names": [
+          "Hazie"
+        ],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "pl_library",
+      "name": "Cedar Bend Public Library",
+      "kind": "office",
+      "city": "Cedar Bend",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_library_69",
+          "startDate": "1969-06-09",
+          "startDateApproximate": false,
+          "endDate": "1969-08-29",
+          "endDateApproximate": false,
+          "sliceIds": []
+        },
+        {
+          "id": "pp_library_70",
+          "startDate": "1970-06-08",
+          "startDateApproximate": false,
+          "endDate": "1970-08-28",
+          "endDateApproximate": false,
+          "sliceIds": []
+        }
+      ],
+      "description": "A two-room town library with a reading room that smelled of floor wax and old paper.",
+      "internalThoughts": "The first place that felt like it was made for her.",
+      "relationshipIds": [
+        "r_ruth"
+      ],
+      "relationshipGroupIds": [],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "pl_kent",
+      "name": "Apartment on Main Street",
+      "kind": "living",
+      "city": "Kent",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_kent",
+          "startDate": "1975-06-21",
+          "startDateApproximate": false,
+          "endDate": "1978-07-31",
+          "endDateApproximate": true,
+          "sliceIds": []
+        }
+      ],
+      "description": "Two rooms above a hardware store, with a radiator that knocked all winter.",
+      "internalThoughts": "Tiny, and theirs.",
+      "relationshipIds": [
+        "r_walter"
+      ],
+      "relationshipGroupIds": [],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "pl_house",
+      "name": "The house on Linden Avenue",
+      "kind": "living",
+      "city": "Cedar Bend",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_house",
+          "startDate": "1978-08-01",
+          "startDateApproximate": true,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": []
+        }
+      ],
+      "description": "A white two-story with green shutters and, by her own account, the best lawn on the street.",
+      "internalThoughts": "Every room has a story in it now.",
+      "relationshipIds": [
+        "r_walter",
+        "r_sam"
+      ],
+      "relationshipGroupIds": [],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "pl_school",
+      "name": "Cedar Bend High School library",
+      "kind": "office",
+      "city": "Cedar Bend",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_school",
+          "startDate": "1978-08-28",
+          "startDateApproximate": false,
+          "endDate": "2015-06-05",
+          "endDateApproximate": false,
+          "sliceIds": []
+        }
+      ],
+      "description": "Long tables, a temperamental microfiche reader, and a quiet corner she kept for the students who ate lunch alone.",
+      "internalThoughts": "Her library, whatever the principal thought.",
+      "relationshipIds": [
+        "r_doris",
+        "r_walter"
+      ],
+      "relationshipGroupIds": [],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "Brisk and formal with students, and a soft touch with the ones who hid in the stacks at lunch.",
+        "names": [
+          "Mrs. Whitaker"
+        ],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "pl_ruths_kitchen",
+      "name": "Ruth's kitchen",
+      "kind": "gathering",
+      "city": "Cedar Bend",
+      "region": "Ohio",
+      "country": "United States",
+      "periods": [
+        {
+          "id": "pp_ruths_kitchen",
+          "startDate": "1979-01-01",
+          "startDateApproximate": true,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": []
+        }
+      ],
+      "description": "Yellow linoleum, a percolator that never stopped, and the Thursday book club.",
+      "internalThoughts": "The one place she says exactly what she thinks.",
+      "relationshipIds": [
+        "r_ruth"
+      ],
+      "relationshipGroupIds": [
+        "grp_bookclub"
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "media": {
+        "corners": {
+          "frontLeft": null,
+          "frontRight": null,
+          "backRight": null,
+          "backLeft": null
+        },
+        "walls": {
+          "front": null,
+          "right": null,
+          "back": null,
+          "left": null
+        }
+      },
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    }
+  ],
+  "education": [
+    {
+      "id": "ed_high_school",
+      "name": "Cedar Bend High School",
+      "kind": "secondary",
+      "fieldOfStudy": "",
+      "qualification": "High school diploma",
+      "outcome": "completed",
+      "description": "Editor of the school paper and a fixture of the library at lunch.",
+      "internalThoughts": "",
+      "typicalDays": [],
+      "periods": [
+        {
+          "id": "ep_high_school",
+          "startDate": "1967-09-05",
+          "startDateApproximate": false,
+          "endDate": "1971-06-04",
+          "endDateApproximate": false
+        }
+      ],
+      "relationshipIds": [
+        "r_ruth"
+      ],
+      "relationshipGroupIds": [],
+      "placeIds": []
+    },
+    {
+      "id": "ed_ohio",
+      "name": "Ohio University",
+      "kind": "undergraduate",
+      "fieldOfStudy": "English",
+      "qualification": "BA in English",
+      "outcome": "completed",
+      "description": "Read everything, slept little, and met Walter at a library book sale.",
+      "internalThoughts": "The first time anyone took her seriously.",
+      "typicalDays": [
+        {
+          "id": "td_ohio",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "description": "Classes in the morning, then the stacks until closing.",
+          "activities": [
+            "lectures",
+            "shelving at the library"
+          ]
+        }
+      ],
+      "periods": [
+        {
+          "id": "ep_ohio",
+          "startDate": "1971-09-20",
+          "startDateApproximate": false,
+          "endDate": "1975-06-14",
+          "endDateApproximate": false
+        }
+      ],
+      "relationshipIds": [
+        "r_walter"
+      ],
+      "relationshipGroupIds": [],
+      "placeIds": []
+    },
+    {
+      "id": "ed_kent",
+      "name": "Kent State University",
+      "kind": "graduate",
+      "fieldOfStudy": "Library science",
+      "qualification": "Master of Library Science",
+      "outcome": "completed",
+      "description": "A one-year program she finished while newly married.",
+      "internalThoughts": "",
+      "typicalDays": [],
+      "periods": [
+        {
+          "id": "ep_kent",
+          "startDate": "1976-09-01",
+          "startDateApproximate": true,
+          "endDate": "1977-08-15",
+          "endDateApproximate": true
+        }
+      ],
+      "relationshipIds": [],
+      "relationshipGroupIds": [],
+      "placeIds": []
+    }
+  ],
+  "property": [
+    {
+      "id": "pr_beetle",
+      "name": "1972 Volkswagen Beetle",
+      "description": "Harvest gold, with a heater that worked when it felt like it.",
+      "periods": [
+        {
+          "id": "prp_beetle",
+          "startDate": "1972-05-01",
+          "startDateApproximate": true,
+          "endDate": "1986-09-01",
+          "endDateApproximate": true
+        }
+      ],
+      "internalThoughts": "Cried a little when it went.",
+      "relationshipIds": [
+        "r_walter"
+      ],
+      "relationshipGroupIds": [],
+      "placeIds": []
+    },
+    {
+      "id": "pr_typewriter",
+      "name": "Smith-Corona electric typewriter",
+      "description": "Pale blue, with a sticky 'e'.",
+      "periods": [
+        {
+          "id": "prp_typewriter",
+          "startDate": "1987-11-01",
+          "startDateApproximate": true,
+          "endDate": "2001-06-01",
+          "endDateApproximate": true
+        }
+      ],
+      "internalThoughts": "The machine Delia Marsh lived in.",
+      "relationshipIds": [
+        "r_ruth"
+      ],
+      "relationshipGroupIds": [],
+      "placeIds": [
+        "pl_house"
+      ]
+    }
+  ],
+  "pets": [
+    {
+      "id": "pet_biscuit",
+      "name": "Biscuit",
+      "species": "dog",
+      "breed": "Beagle mix",
+      "size": "medium",
+      "coat": "Tan and white, with one ear that never stood up",
+      "birthDate": "1984-05-01",
+      "birthDateApproximate": true,
+      "deathDate": "1997-10-14",
+      "deathDateApproximate": false,
+      "outcome": "died",
+      "description": "Bayed at the mail carrier every single day for thirteen years.",
+      "internalThoughts": "She said he was Sam's dog. He was hers.",
+      "periods": [
+        {
+          "id": "ptp_biscuit",
+          "startDate": "1984-07-01",
+          "startDateApproximate": true,
+          "endDate": "1997-10-14",
+          "endDateApproximate": false
+        }
+      ],
+      "relationshipIds": [
+        "r_walter",
+        "r_sam"
+      ],
+      "relationshipGroupIds": [],
+      "placeIds": [
+        "pl_house"
+      ],
+      "picture": null,
+      "photos": {
+        "front": null,
+        "side": null,
+        "back": null
+      },
+      "model": null
+    },
+    {
+      "id": "pet_pip",
+      "name": "Pip",
+      "species": "cat",
+      "breed": "",
+      "size": "small",
+      "coat": "Grey tabby with white paws",
+      "birthDate": null,
+      "birthDateApproximate": false,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "outcome": "unspecified",
+      "description": "A stray who moved onto the porch the winter after Walter died and never left.",
+      "internalThoughts": "Company.",
+      "periods": [
+        {
+          "id": "ptp_pip",
+          "startDate": "2016-01-15",
+          "startDateApproximate": true,
+          "endDate": null,
+          "endDateApproximate": false
+        }
+      ],
+      "relationshipIds": [],
+      "relationshipGroupIds": [],
+      "placeIds": [
+        "pl_house"
+      ],
+      "picture": null,
+      "photos": {
+        "front": null,
+        "side": null,
+        "back": null
+      },
+      "model": null
+    }
+  ],
+  "career": [
+    {
+      "id": "job_page",
+      "title": "Summer page at Cedar Bend Public Library",
+      "description": "Shelving returns, reading to children on Saturdays, and keeping the card catalog in better order than she found it.",
+      "typicalDays": [
+        {
+          "id": "td_page",
+          "days": [
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat"
+          ],
+          "description": "Opening at nine, returns cart by ten, story hour on Saturdays.",
+          "activities": [
+            "shelving",
+            "story hour"
+          ]
+        }
+      ],
+      "placeIds": [
+        "pl_library"
+      ],
+      "periods": [
+        {
+          "id": "jp_page_69",
+          "startDate": "1969-06-09",
+          "startDateApproximate": false,
+          "endDate": "1969-08-29",
+          "endDateApproximate": false
+        },
+        {
+          "id": "jp_page_70",
+          "startDate": "1970-06-08",
+          "startDateApproximate": false,
+          "endDate": "1970-08-28",
+          "endDateApproximate": false
+        }
+      ]
+    },
+    {
+      "id": "job_librarian",
+      "title": "School librarian at Cedar Bend High School",
+      "description": "Ran the high school library for thirty-seven years: research skills, banned-book fights, and the yearbook archive.",
+      "typicalDays": [
+        {
+          "id": "td_librarian",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "description": "In at seven, classes through the library all day, overdue notices after the last bell.",
+          "activities": [
+            "teaching research skills",
+            "cataloging"
+          ]
+        }
+      ],
+      "placeIds": [
+        "pl_school"
+      ],
+      "periods": [
+        {
+          "id": "jp_librarian",
+          "startDate": "1978-08-28",
+          "startDateApproximate": false,
+          "endDate": "2015-06-05",
+          "endDateApproximate": false
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r_walter",
+      "label": "Walter Whitaker",
+      "description": "A high school chemistry teacher who could fix anything except his own handwriting.",
+      "birthDate": "1951-09-30",
+      "birthDateApproximate": false,
+      "deathDate": "2015-02-11",
+      "deathDateApproximate": false,
+      "deceased": true,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_walter_courting",
+          "startDate": "1972-10-01",
+          "startDateApproximate": true,
+          "endDate": "1975-06-20",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Walt",
+          "pronouns": "he_him",
+          "kind": "romantic",
+          "seenProfileId": null,
+          "treatment": "Patient, funny, and impossible to argue with.",
+          "feelings": "Knew by the second date and made him wait a year anyway."
+        },
+        {
+          "id": "rp_walter_married",
+          "startDate": "1975-06-21",
+          "startDateApproximate": false,
+          "endDate": "2015-02-11",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Walter",
+          "pronouns": "he_him",
+          "kind": "partner",
+          "seenProfileId": null,
+          "treatment": "Steady. Brought her coffee every morning for forty years.",
+          "feelings": "Her favorite person to disagree with."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_sam",
+      "label": "Sam Whitaker",
+      "description": "Hazel and Walter's son.",
+      "birthDate": "1979-03-02",
+      "birthDateApproximate": false,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_sam",
+          "startDate": "1979-03-02",
+          "startDateApproximate": false,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Sam",
+          "pronouns": "he_him",
+          "kind": "child",
+          "seenProfileId": null,
+          "treatment": "Teases her mercilessly and calls every Sunday.",
+          "feelings": "The best thing she ever made."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_jordan",
+      "label": "Jordan Reyes",
+      "description": "Sam's spouse.",
+      "birthDate": "1981-07-19",
+      "birthDateApproximate": true,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family",
+        "grp_bookclub"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_jordan_new",
+          "startDate": "2010-12-24",
+          "startDateApproximate": false,
+          "endDate": "2013-05-17",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Jordan",
+          "pronouns": "they_them",
+          "kind": "acquaintance",
+          "seenProfileId": null,
+          "treatment": "Brought a store-bought pie the first Christmas and never lived it down.",
+          "feelings": "Made up her mind about them before the coats were off."
+        },
+        {
+          "id": "rp_jordan_family",
+          "startDate": "2013-05-18",
+          "startDateApproximate": false,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Jordan",
+          "pronouns": "they_them",
+          "kind": "in_law",
+          "seenProfileId": null,
+          "treatment": "Joined her book club, mostly to argue with Ruth.",
+          "feelings": "The best thing that ever happened to Sam, and she tells them so."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_ruth",
+      "label": "Ruth Abernathy",
+      "description": "Friends since third grade.",
+      "birthDate": "1953-01-08",
+      "birthDateApproximate": false,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_bookclub"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_ruth_school",
+          "startDate": "1961-09-05",
+          "startDateApproximate": true,
+          "endDate": "1969-06-08",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Ruthie",
+          "pronouns": "she_her",
+          "kind": "friend",
+          "seenProfileId": null,
+          "treatment": "Shared her lunch and her opinions.",
+          "feelings": "The girl who was always a little braver than her."
+        },
+        {
+          "id": "rp_ruth_best",
+          "startDate": "1969-06-09",
+          "startDateApproximate": false,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Ruth",
+          "pronouns": "she_her",
+          "kind": "best_friend",
+          "seenProfileId": null,
+          "treatment": "Tells her the truth, reads every draft, and keeps every secret.",
+          "feelings": "Would trust her with anything, and has."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_mother",
+      "label": "Margaret Pruitt",
+      "description": "",
+      "birthDate": "1928-05-21",
+      "birthDateApproximate": false,
+      "deathDate": "2009-12-03",
+      "deathDateApproximate": false,
+      "deceased": true,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_mother",
+          "startDate": "1953-04-12",
+          "startDateApproximate": false,
+          "endDate": "2009-12-03",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Mom",
+          "pronouns": "she_her",
+          "kind": "mother",
+          "seenProfileId": null,
+          "treatment": "Loving, and convinced Hazel would ruin her eyes reading.",
+          "feelings": "Missed her more than she expected to."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_father",
+      "label": "Harold Pruitt",
+      "description": "",
+      "birthDate": "1925-11-02",
+      "birthDateApproximate": false,
+      "deathDate": "1991-08-19",
+      "deathDateApproximate": false,
+      "deceased": true,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_father",
+          "startDate": "1953-04-12",
+          "startDateApproximate": false,
+          "endDate": "1991-08-19",
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Dad",
+          "pronouns": "he_him",
+          "kind": "father",
+          "seenProfileId": null,
+          "treatment": "Quiet; drove her to the library every Saturday without being asked.",
+          "feelings": "Where she got her stubbornness, and she knows it."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_edna",
+      "label": "Edna Pruitt",
+      "description": "Hazel's grandmother, who lived with the family.",
+      "birthDate": "1884-02-01",
+      "birthDateApproximate": true,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": true,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_edna",
+          "startDate": "1953-04-12",
+          "startDateApproximate": false,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Grandma Edna",
+          "pronouns": "she_her",
+          "kind": "grandparent",
+          "seenProfileId": null,
+          "treatment": "Taught her to read before kindergarten.",
+          "feelings": "Her first hero."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_dennis",
+      "label": "Dennis Kowalski",
+      "description": "",
+      "birthDate": "1950-02-14",
+      "birthDateApproximate": true,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_dennis",
+          "startDate": "1985-09-14",
+          "startDateApproximate": true,
+          "endDate": "1999-06-30",
+          "endDateApproximate": true,
+          "sliceIds": [],
+          "name": "Dennis",
+          "pronouns": "he_him",
+          "kind": "neighbor",
+          "seenProfileId": null,
+          "treatment": "Mowed his lawn on Sundays, which she considered a provocation.",
+          "feelings": "Liked him far more than she let on."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_doris",
+      "label": "Doris Fenn",
+      "description": "",
+      "birthDate": "1948-06-11",
+      "birthDateApproximate": true,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [
+        "grp_bookclub"
+      ],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_doris",
+          "startDate": "1978-08-28",
+          "startDateApproximate": false,
+          "endDate": null,
+          "endDateApproximate": false,
+          "sliceIds": [],
+          "name": "Doris",
+          "pronouns": "she_her",
+          "kind": "coworker",
+          "seenProfileId": null,
+          "treatment": "Ran the front office and every rumor in it.",
+          "feelings": "Fond of her, and careful what she says around her."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "r_lorraine",
+      "label": "Lorraine Hatch",
+      "description": "Delia Marsh's editor in New York.",
+      "birthDate": "1945-10-03",
+      "birthDateApproximate": true,
+      "deathDate": null,
+      "deathDateApproximate": false,
+      "deceased": false,
+      "personaId": null,
+      "relationshipGroupIds": [],
+      "picture": null,
+      "voice": null,
+      "avatar": {
+        "front": null,
+        "left": null,
+        "right": null,
+        "body": null,
+        "model": null,
+        "dress": null
+      },
+      "periods": [
+        {
+          "id": "rp_lorraine",
+          "startDate": "1988-04-01",
+          "startDateApproximate": true,
+          "endDate": "2001-06-01",
+          "endDateApproximate": true,
+          "sliceIds": [
+            "s_delia"
+          ],
+          "name": "Lorraine",
+          "pronouns": "she_her",
+          "kind": "other",
+          "seenProfileId": null,
+          "treatment": "Sent manuscripts back with notes in green ink and never once asked about Vermont.",
+          "feelings": "Trusted her completely and never met her."
+        }
+      ],
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    }
+  ],
+  "relationshipGroups": [
+    {
+      "id": "grp_family",
+      "name": "Family"
+    },
+    {
+      "id": "grp_bookclub",
+      "name": "Thursday book club"
+    }
+  ],
+  "slices": [
+    {
+      "id": "s_childhood",
+      "title": "Growing up in Cedar Bend",
+      "startDate": "1953-04-12",
+      "startDateApproximate": false,
+      "endDate": "1971-09-19",
+      "endDateApproximate": false,
+      "transitionBefore": "",
+      "definingCharacteristics": "Bookish, stubborn, and happiest in the library.",
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "typicalDays": [
+        {
+          "id": "td_childhood",
+          "days": [
+            "sat"
+          ],
+          "description": "Dad drove her to the library; she came home with as many books as she could carry.",
+          "activities": [
+            "reading"
+          ]
+        }
+      ],
+      "internalThoughts": "Sure there was a bigger world, and that it was mostly in books.",
+      "tendencyOverrides": {
+        "extraversion": 35
+      },
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "presentation": {
+        "description": "",
+        "names": [
+          "Hazie"
+        ],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "s_college",
+      "title": "College in Athens",
+      "startDate": "1971-09-20",
+      "startDateApproximate": false,
+      "endDate": "1975-06-20",
+      "endDateApproximate": false,
+      "transitionBefore": "Left home for Ohio University, the first Pruitt to go to college.",
+      "definingCharacteristics": "Finding out she was not the only person who loved books this much.",
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "typicalDays": [],
+      "internalThoughts": "",
+      "tendencyOverrides": {},
+      "relationshipGroupIds": [],
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "s_kent",
+      "title": "Newlyweds in Kent",
+      "startDate": "1975-06-21",
+      "startDateApproximate": false,
+      "endDate": "1978-07-31",
+      "endDateApproximate": false,
+      "transitionBefore": "",
+      "definingCharacteristics": "Graduate school, a tiny apartment, and very little money.",
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "typicalDays": [],
+      "internalThoughts": "",
+      "tendencyOverrides": {},
+      "relationshipGroupIds": [],
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "s_cedar_bend",
+      "title": "Back in Cedar Bend",
+      "startDate": "1978-08-01",
+      "startDateApproximate": false,
+      "endDate": "2015-02-11",
+      "endDateApproximate": false,
+      "transitionBefore": "Took the high school library job and moved home.",
+      "definingCharacteristics": "Raising Sam, running the school library, and keeping the neighbors honest about their lawns.",
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "typicalDays": [
+        {
+          "id": "td_saturday",
+          "days": [
+            "sat"
+          ],
+          "description": "Garden in the morning, errands after lunch, pot roast for whoever turned up.",
+          "activities": [
+            "gardening",
+            "the crossword"
+          ]
+        }
+      ],
+      "internalThoughts": "",
+      "tendencyOverrides": {},
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "s_delia",
+      "title": "Writing as Delia Marsh",
+      "startDate": "1987-11-01",
+      "startDateApproximate": true,
+      "endDate": "2001-06-01",
+      "endDateApproximate": true,
+      "transitionBefore": "",
+      "definingCharacteristics": "Wrote eleven paperback mysteries under a pen name and told almost no one.",
+      "visibility": {
+        "level": "selective",
+        "relationshipIds": [
+          "r_ruth"
+        ],
+        "relationshipGroupIds": [],
+        "note": "Ruth read every manuscript. Walter thought the typewriter was for the PTA newsletter."
+      },
+      "typicalDays": [
+        {
+          "id": "td_delia",
+          "days": [
+            "mon",
+            "wed"
+          ],
+          "description": "Wrote from nine to midnight in the sewing room, after everyone was asleep.",
+          "activities": [
+            "writing"
+          ]
+        }
+      ],
+      "internalThoughts": "The happiest secret she ever kept.",
+      "tendencyOverrides": {},
+      "relationshipGroupIds": [],
+      "presentation": {
+        "description": "To her publisher and her readers, Delia Marsh was a reclusive widow in Vermont.",
+        "names": [
+          "Delia Marsh"
+        ],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    },
+    {
+      "id": "s_after_walter",
+      "title": "After Walter",
+      "startDate": "2015-02-12",
+      "startDateApproximate": false,
+      "endDate": null,
+      "endDateApproximate": false,
+      "transitionBefore": "Walter died in February 2015, four months before she retired.",
+      "definingCharacteristics": "Retired, widowed, and busier than ever: the book club, the garden, Pip, and Sam's family.",
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      },
+      "typicalDays": [],
+      "internalThoughts": "",
+      "tendencyOverrides": {
+        "extraversion": 55
+      },
+      "relationshipGroupIds": [],
+      "presentation": {
+        "description": "",
+        "names": [],
+        "picture": null,
+        "genderPresentation": null,
+        "pronouns": null,
+        "primaryLanguage": null,
+        "accent": null,
+        "sexualOrientation": null,
+        "romanticOrientation": null,
+        "politicalOrientation": null,
+        "religion": null,
+        "likes": null,
+        "dislikes": null
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "ev_wedding",
+      "name": "Hazel and Walter's wedding",
+      "startDate": "1975-06-21",
+      "startDateApproximate": false,
+      "endDate": "1975-06-21",
+      "endDateApproximate": false,
+      "description": "A June wedding at the Methodist church, and a reception in the church hall.",
+      "whatHappened": "It rained until noon and cleared for the photos. Ruth cried more than the bride.",
+      "relationshipIds": [
+        "r_walter",
+        "r_ruth",
+        "r_mother",
+        "r_father"
+      ],
+      "relationshipGroupIds": [
+        "grp_family"
+      ],
+      "placeId": null,
+      "subEvents": [
+        {
+          "id": "sev_ceremony",
+          "name": "The ceremony",
+          "date": "1975-06-21",
+          "dateApproximate": false,
+          "description": "Walter forgot his line and laughed.",
+          "placeId": null
+        },
+        {
+          "id": "sev_reception",
+          "name": "The reception",
+          "date": "1975-06-21",
+          "dateApproximate": false,
+          "description": "Punch, sheet cake, and dancing until the janitor turned the lights off.",
+          "placeId": null
+        }
+      ],
+      "looks": [
+        {
+          "id": "lk_wedding_dress",
+          "who": "main",
+          "subEventId": "sev_ceremony",
+          "dress": {
+            "wardrobe": "avaturn",
+            "clothing": null,
+            "hair": null,
+            "hairColor": "#6b4226",
+            "eyewear": "none",
+            "footwear": null,
+            "build": null
+          },
+          "model": null
+        }
+      ],
+      "picture": null,
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    },
+    {
+      "id": "ev_christmas_2010",
+      "name": "Christmas 2010",
+      "startDate": "2010-12-24",
+      "startDateApproximate": false,
+      "endDate": "2010-12-26",
+      "endDateApproximate": false,
+      "description": "The Christmas Sam brought Jordan home.",
+      "whatHappened": "Jordan arrived with a store-bought pie. Hazel had made up her mind about them before the coats were off, and spent the rest of the visit letting everyone else catch up.",
+      "relationshipIds": [
+        "r_sam",
+        "r_jordan",
+        "r_walter"
+      ],
+      "relationshipGroupIds": [],
+      "placeId": "pl_house",
+      "subEvents": [
+        {
+          "id": "sev_christmas_eve",
+          "name": "Christmas Eve dinner",
+          "date": "2010-12-24",
+          "dateApproximate": false,
+          "description": "Pot roast, and twenty questions for Jordan.",
+          "placeId": null
+        },
+        {
+          "id": "sev_presents",
+          "name": "Opening presents",
+          "date": "2010-12-25",
+          "dateApproximate": false,
+          "description": "Jordan got a scarf Hazel had finished knitting at two in the morning.",
+          "placeId": null
+        }
+      ],
+      "looks": [],
+      "picture": null,
+      "visibility": {
+        "level": "public",
+        "relationshipIds": [],
+        "relationshipGroupIds": [],
+        "note": ""
+      }
+    }
+  ]
+}

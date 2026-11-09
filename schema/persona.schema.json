@@ -1,0 +1,5038 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Generated from spec/persona.annotated.json by tools/build-schema.mjs. Do not edit by hand: change the spec and run npm run build:schema.",
+  "title": "persona.json (persona-interchange-format 0.4)",
+  "description": "persona.json: one person, everything about them, at the root of a persona package (a .persona.zip holding, beside it, every file it names in pictures/, audio/, avatars/). Each field below is written as the values it may take, then \"—\", then what it means; $values explains how values are written. A list shows one entry, standing for every entry. Keys beginning with $ are notes, never part of persona.json. Every field is written; their order does not matter. A reader ignores any field it does not know, and reads a value it does not know as $values says; specVersion changes whenever a field or a value is added, or one changes meaning. Nothing in the file belongs to any one app: an app keeps its own data about a persona (how it lays people out, what it has built from the photos, its settings) apart from it. A persona's life is told on a timeline: profiles (who they were), slices (the chapters of their life), health periods and events, and the people, places, schools, property, pets and jobs with periods of their own. A null end date means ongoing; for someone deceased, it runs until their death. Any date may be only roughly remembered: beside each date is a field named for it with Approximate added (startDateApproximate beside startDate) that says so, and the date is then the best guess at the day. The people reach as far back as a family tree does: anyone may be born from 1000-01-01 on, someone known to have died on a day nobody recorded is deceased with no deathDate, and the pronouns each went by are on their periods.",
+  "type": "object",
+  "properties": {
+    "spec": {
+      "const": "persona-interchange-format",
+      "description": "names the format"
+    },
+    "specVersion": {
+      "const": "0.4",
+      "description": "the version of the format the file follows"
+    },
+    "id": {
+      "$ref": "#/$defs/uuid",
+      "description": "this persona's own id; a person in another persona's file stands for this persona by naming it as their personaId"
+    },
+    "personaName": {
+      "$ref": "#/$defs/text",
+      "description": "what this persona is called"
+    },
+    "birthDate": {
+      "$ref": "#/$defs/date",
+      "description": "the day the persona was born, 1000-01-01 or later"
+    },
+    "birthDateApproximate": {
+      "type": "boolean",
+      "description": "true when the birth date is only approximate, a best guess by someone who does not remember the day; false when it is known"
+    },
+    "deathDate": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/date"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "the day the persona died; null while living, and for a persona who died on a day nobody recorded (deceased)"
+    },
+    "deathDateApproximate": {
+      "type": "boolean",
+      "description": "true when the death date is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it is null"
+    },
+    "deceased": {
+      "type": "boolean",
+      "description": "whether the persona has died: true when they have died, with or without a deathDate; false while living. A persona deceased with no deathDate is taken to have lived to 80, or to the latest end date of their profiles, slices and health periods if that is later (a null end date runs until the death, so does not count)"
+    },
+    "core": {
+      "type": "object",
+      "properties": {
+        "educationLevel": {
+          "enum": [
+            "hs_not_completed",
+            "hs_completed",
+            "post_1",
+            "post_2",
+            "post_3",
+            "post_4",
+            "post_5",
+            "post_6",
+            "post_7",
+            "post_8",
+            "post_9",
+            "post_10",
+            null
+          ],
+          "description": "the schooling the persona finished: hs_not_completed (left before finishing high school), hs_completed, or post_1 to post_10 (years of study after high school: post_4 is a four-year degree); null until known"
+        },
+        "writingProficiency": {
+          "enum": [
+            "very_low",
+            "low",
+            "medium",
+            "high",
+            "very_high",
+            "none",
+            null
+          ],
+          "description": "how well the persona writes, which is how they write in a conversation; none when they do not communicate at all, so cannot be talked to; null until known"
+        },
+        "genderIdentity": {
+          "enum": [
+            "man",
+            "woman",
+            "nonbinary"
+          ],
+          "description": "the persona's gender; how they presented it, and their pronouns, are on each profile; nonbinary for one the reader does not know"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/country"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "the country the persona is from (ISO 3166-1 alpha-2); null until known"
+        },
+        "culturalBackground": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/culturalBackground"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "the culture the persona grew up in; null until known"
+        },
+        "tendencies": {
+          "type": "object",
+          "properties": {
+            "attentiveness": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "focus on the task and its details: high stays on them and makes fewer mistakes, but is slower; low is quicker but less focused, and slips more; null until set"
+            },
+            "extraversion": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "openness with inner thoughts: high shares them, and readily connects them to other people; low keeps them close; null until set"
+            },
+            "agreeableness": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "willingness to go along: high avoids arguments, agrees where it has no set view, and keeps quiet rather than lie; low argues readily, and will lie where the persona would; null until set"
+            },
+            "neuroticism": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "anxiety: high is anxious and guarded, and quick to see risk in what is asked; low is calm and open, and little worried about what could go wrong; null until set"
+            },
+            "ambition": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "drive: high is curious about ideas with potential, even ones it disagrees with, and self-directed; low accepts the status quo, and leans on others; null until set"
+            },
+            "emotionality": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/score"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "how the persona thinks and speaks: high through feeling, low through logic; null until set"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "attentiveness",
+            "extraversion",
+            "agreeableness",
+            "neuroticism",
+            "ambition",
+            "emotionality"
+          ],
+          "description": "The persona's core tendencies, each on a scale of 0 to 100. Profiles and slices may change them for a while (tendencyOverrides)."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "educationLevel",
+        "writingProficiency",
+        "genderIdentity",
+        "country",
+        "culturalBackground",
+        "tendencies"
+      ],
+      "description": "What holds across the whole life."
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this profile"
+          },
+          "startDate": {
+            "$ref": "#/$defs/date",
+            "description": "the first day of this profile"
+          },
+          "startDateApproximate": {
+            "type": "boolean",
+            "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+          },
+          "endDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the last day of this profile; null while it goes on"
+          },
+          "endDateApproximate": {
+            "type": "boolean",
+            "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+          },
+          "transitionBefore": {
+            "$ref": "#/$defs/longText",
+            "description": "the change that led into this profile: a graduation, coming out, a diagnosis, and the questioning or upheaval around it; empty when there was none"
+          },
+          "label": {
+            "$ref": "#/$defs/text",
+            "description": "what the profile is called on the timeline (\"As Michael\", \"After the move\")"
+          },
+          "primaryName": {
+            "$ref": "#/$defs/text",
+            "description": "the persona's full name during this profile"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "who the persona was during this profile"
+          },
+          "tendencyOverrides": {
+            "type": "object",
+            "properties": {
+              "attentiveness": {
+                "$ref": "#/$defs/score",
+                "description": "attentiveness during this profile"
+              },
+              "extraversion": {
+                "$ref": "#/$defs/score",
+                "description": "extraversion during this profile"
+              },
+              "agreeableness": {
+                "$ref": "#/$defs/score",
+                "description": "agreeableness during this profile"
+              },
+              "neuroticism": {
+                "$ref": "#/$defs/score",
+                "description": "neuroticism during this profile"
+              },
+              "ambition": {
+                "$ref": "#/$defs/score",
+                "description": "ambition during this profile"
+              },
+              "emotionality": {
+                "$ref": "#/$defs/score",
+                "description": "emotionality during this profile"
+              }
+            },
+            "additionalProperties": false,
+            "description": "The core tendencies this profile changes, each replacing the core value while it lasts; an axis it leaves alone is left out."
+          },
+          "genderPresentation": {
+            "enum": [
+              "man",
+              "woman",
+              "gnc_man",
+              "gnc_woman"
+            ],
+            "description": "how the persona presented: as a man, a woman, or a gender non-conforming man (gnc_man) or woman (gnc_woman); for one the reader does not know, gnc_woman if the persona is a woman and gnc_man otherwise"
+          },
+          "pronouns": {
+            "$ref": "#/$defs/pronouns",
+            "description": "the pronouns the persona went by; any for any pronouns, name_only for none (the name instead); name_only for one the reader does not know"
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/language",
+              "description": "a language the persona spoke: its ISO 639-1 code, or its ISO 639-3 code where it has no two-letter one (yue is Cantonese, hmn Hmong, ase American Sign Language); at least one"
+            },
+            "description": "a language the persona spoke: its ISO 639-1 code, or its ISO 639-3 code where it has no two-letter one (yue is Cantonese, hmn Hmong, ase American Sign Language); at least one",
+            "minItems": 1
+          },
+          "primaryLanguage": {
+            "$ref": "#/$defs/language",
+            "description": "the language the persona spoke by default; one of languages. For one the reader does not know, the first of languages it does know, or en if it knows none of them (which it then takes them to speak)"
+          },
+          "accent": {
+            "$ref": "#/$defs/accent",
+            "description": "the regional accent the persona spoke with, none for no particular one; none for one the reader does not know. An accent's id begins with the code of the country it is from (us_new_england), which need not be where the persona is from"
+          },
+          "sexualOrientation": {
+            "$ref": "#/$defs/sexualOrientation",
+            "description": "whom the persona was attracted to: men, women, or both; demi_ only once emotionally bonded (demisexual); asexual for neither; unspecified when not known (as for most ancestors)"
+          },
+          "romanticOrientation": {
+            "enum": [
+              "unspecified",
+              "romantic",
+              "demiromantic",
+              "aromantic"
+            ],
+            "description": "whether the persona fell in love: romantic, only once bonded (demiromantic), or not (aromantic); unspecified when not known"
+          },
+          "politicalOrientation": {
+            "$ref": "#/$defs/politicalOrientation",
+            "description": "the persona's politics; unspecified when not said"
+          },
+          "religion": {
+            "$ref": "#/$defs/religion",
+            "description": "the persona's faith; none (not religious), agnostic, atheist or spiritual (but not religious) for no faith; a branch of a faith where it is known (catholic, sunni, reform_jewish); unspecified when not said"
+          },
+          "picture": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/pictureFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "how the persona looked; shown to the people who know them well"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/audioFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "a recording of the persona's voice; their lines are spoken in a voice made from it"
+          },
+          "avatar": {
+            "type": "object",
+            "properties": {
+              "front": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the persona's face, from the front"
+              },
+              "left": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the persona's face, turned to the left"
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the persona's face, turned to the right"
+              },
+              "body": {
+                "enum": [
+                  "man",
+                  "woman",
+                  null
+                ],
+                "description": "the body the model is built on; null to follow genderPresentation"
+              },
+              "model": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "$ref": "#/$defs/avatarFile",
+                        "description": "the model"
+                      },
+                      "createdAt": {
+                        "$ref": "#/$defs/timestamp",
+                        "description": "when the model was made"
+                      },
+                      "faceAnimations": {
+                        "type": "boolean",
+                        "description": "whether the model carries face blend shapes, for lip-sync and expressions"
+                      },
+                      "uploaded": {
+                        "type": "boolean",
+                        "description": "whether the model was supplied as it is, rather than made from the photos of the face"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "file",
+                      "createdAt",
+                      "faceAnimations",
+                      "uploaded"
+                    ],
+                    "description": "The rigged 3D model of the avatar, or null when there is none."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "The rigged 3D model of the avatar, or null when there is none."
+              },
+              "dress": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "wardrobe": {
+                        "$ref": "#/$defs/text",
+                        "description": "the wardrobe the ids here are from, named for the service that builds the model: avaturn for Avaturn (avaturn.me). A reader that does not dress avatars from it reads every id here, and the build, as null"
+                      },
+                      "clothing": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the outfit, by its id in the wardrobe; null for its default"
+                      },
+                      "hair": {
+                        "anyOf": [
+                          {
+                            "const": "none"
+                          },
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the hair or headwear, by its id in the wardrobe; none for no hair or headwear; null for the default"
+                      },
+                      "hairColor": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/color"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the color of the hair; null for the default"
+                      },
+                      "eyewear": {
+                        "anyOf": [
+                          {
+                            "const": "none"
+                          },
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the glasses, by its id in the wardrobe; none for no glasses; null for the default"
+                      },
+                      "footwear": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the shoes, by its id in the wardrobe; null for the default"
+                      },
+                      "build": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/build"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "one of the wardrobe's five body builds; null for the default"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "wardrobe",
+                      "clothing",
+                      "hair",
+                      "hairColor",
+                      "eyewear",
+                      "footwear",
+                      "build"
+                    ],
+                    "description": "What the avatar wears, or null for the defaults throughout."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "What the avatar wears, or null for the defaults throughout."
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "front",
+              "left",
+              "right",
+              "body",
+              "model",
+              "dress"
+            ],
+            "description": "The persona's 3D avatar during this profile: three photos of the face, the body it is built on, the model made from them, and what it wears."
+          },
+          "likes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/text",
+              "description": "something the persona liked"
+            },
+            "description": "something the persona liked"
+          },
+          "dislikes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/text",
+              "description": "something the persona disliked"
+            },
+            "description": "something the persona disliked"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "startDate",
+          "startDateApproximate",
+          "endDate",
+          "endDateApproximate",
+          "transitionBefore",
+          "label",
+          "primaryName",
+          "description",
+          "tendencyOverrides",
+          "genderPresentation",
+          "pronouns",
+          "languages",
+          "primaryLanguage",
+          "accent",
+          "sexualOrientation",
+          "romanticOrientation",
+          "politicalOrientation",
+          "religion",
+          "picture",
+          "voice",
+          "avatar",
+          "likes",
+          "dislikes"
+        ],
+        "description": "Who the persona was for a stretch of life: their name, look and voice, languages, orientation, beliefs and tastes. A new profile begins when one of these changed for good (a new name on marrying, a transition). On any day the profile in effect is the latest to have begun."
+      },
+      "description": "Who the persona was for a stretch of life: their name, look and voice, languages, orientation, beliefs and tastes. A new profile begins when one of these changed for good (a new name on marrying, a transition). On any day the profile in effect is the latest to have begun."
+    },
+    "health": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this health period"
+          },
+          "startDate": {
+            "$ref": "#/$defs/date",
+            "description": "the first day of this health period"
+          },
+          "startDateApproximate": {
+            "type": "boolean",
+            "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+          },
+          "endDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the last day of this health period; null while it goes on"
+          },
+          "endDateApproximate": {
+            "type": "boolean",
+            "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+          },
+          "transitionBefore": {
+            "$ref": "#/$defs/longText",
+            "description": "the change that led into this health period: a graduation, coming out, a diagnosis, and the questioning or upheaval around it; empty when there was none"
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this condition"
+                },
+                "name": {
+                  "$ref": "#/$defs/text",
+                  "description": "what it was called; may be left empty"
+                },
+                "category": {
+                  "enum": [
+                    "unspecified",
+                    "physical",
+                    "mental",
+                    "chronic",
+                    "injury",
+                    "other"
+                  ],
+                  "description": "what kind of condition it was; unspecified when not said"
+                },
+                "treated": {
+                  "type": "boolean",
+                  "description": "whether it was treated"
+                },
+                "misdiagnosed": {
+                  "type": "boolean",
+                  "description": "whether the persona was diagnosed with it wrongly"
+                },
+                "visibility": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "enum": [
+                        "public",
+                        "secret",
+                        "selective",
+                        "nobody"
+                      ],
+                      "description": "public: anyone; secret: the persona alone; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+                    },
+                    "relationshipIds": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/id",
+                        "description": "someone else let in at selective"
+                      },
+                      "description": "someone else let in at selective"
+                    },
+                    "relationshipGroupIds": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/id",
+                        "description": "a group whose members are let in at selective"
+                      },
+                      "description": "a group whose members are let in at selective"
+                    },
+                    "note": {
+                      "$ref": "#/$defs/longText",
+                      "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "level",
+                    "relationshipIds",
+                    "relationshipGroupIds",
+                    "note"
+                  ],
+                  "description": "Who could know about this condition, among those who knew of its period. Whoever it does not let in never hears of it."
+                },
+                "impact": {
+                  "$ref": "#/$defs/longText",
+                  "description": "how it affected day-to-day life"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "name",
+                "category",
+                "treated",
+                "misdiagnosed",
+                "visibility",
+                "impact"
+              ],
+              "description": "A condition the persona had, treated or not."
+            },
+            "description": "A condition the persona had, treated or not."
+          },
+          "disabilities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this disability"
+                },
+                "name": {
+                  "$ref": "#/$defs/text",
+                  "description": "what it was called; may be left empty"
+                },
+                "category": {
+                  "enum": [
+                    "unspecified",
+                    "mobility",
+                    "sensory",
+                    "cognitive",
+                    "chronic",
+                    "other"
+                  ],
+                  "description": "what kind of disability it was (sensory is sight or hearing); unspecified when not said"
+                },
+                "visibility": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "enum": [
+                        "public",
+                        "secret",
+                        "selective",
+                        "nobody"
+                      ],
+                      "description": "public: anyone; secret: the persona alone; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+                    },
+                    "relationshipIds": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/id",
+                        "description": "someone else let in at selective"
+                      },
+                      "description": "someone else let in at selective"
+                    },
+                    "relationshipGroupIds": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/id",
+                        "description": "a group whose members are let in at selective"
+                      },
+                      "description": "a group whose members are let in at selective"
+                    },
+                    "note": {
+                      "$ref": "#/$defs/longText",
+                      "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "level",
+                    "relationshipIds",
+                    "relationshipGroupIds",
+                    "note"
+                  ],
+                  "description": "Who could know about this disability, among those who knew of its period. Whoever it does not let in never hears of it."
+                },
+                "impact": {
+                  "$ref": "#/$defs/longText",
+                  "description": "how it affected day-to-day life"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "name",
+                "category",
+                "visibility",
+                "impact"
+              ],
+              "description": "A disability the persona lived with."
+            },
+            "description": "A disability the persona lived with."
+          },
+          "doesNotCommunicate": {
+            "type": "boolean",
+            "description": "whether the persona could not interact at all during this period; no conversation is set on these dates"
+          },
+          "visibility": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "enum": [
+                  "public",
+                  "secret",
+                  "selective",
+                  "nobody"
+                ],
+                "description": "public: anyone; secret: the persona alone; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually secret"
+              },
+              "relationshipIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "someone else let in at selective"
+                },
+                "description": "someone else let in at selective"
+              },
+              "relationshipGroupIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "a group whose members are let in at selective"
+                },
+                "description": "a group whose members are let in at selective"
+              },
+              "note": {
+                "$ref": "#/$defs/longText",
+                "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "relationshipIds",
+              "relationshipGroupIds",
+              "note"
+            ],
+            "description": "Who could know about the persona's health during this period, among those who knew the part of life it overlaps. Whoever it does not let in never hears of it."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "startDate",
+          "startDateApproximate",
+          "endDate",
+          "endDateApproximate",
+          "transitionBefore",
+          "conditions",
+          "disabilities",
+          "doesNotCommunicate",
+          "visibility"
+        ],
+        "description": "A stretch of life with a particular state of health: its conditions and disabilities, each with what it did to daily life, and whether the persona could communicate at all. A period with nothing in it says only that the persona was alive and able to talk. A name is never needed: the category and the impact are enough."
+      },
+      "description": "A stretch of life with a particular state of health: its conditions and disabilities, each with what it did to daily life, and whether the persona could communicate at all. A period with nothing in it says only that the persona was alive and able to talk. A name is never needed: the category and the impact are enough."
+    },
+    "places": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this place"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what the place is called"
+          },
+          "kind": {
+            "enum": [
+              "living",
+              "temporary_living",
+              "office",
+              "gathering",
+              "online"
+            ],
+            "description": "living: a permanent home (the people of the slices it falls in are household, who know every public chapter of the persona's life); temporary_living: somewhere lived for a while, a holiday home too; office: a workplace; gathering: a place people met; online: an online space; gathering for one the reader does not know"
+          },
+          "city": {
+            "$ref": "#/$defs/text",
+            "description": "the city or town"
+          },
+          "region": {
+            "$ref": "#/$defs/text",
+            "description": "the state, province or region"
+          },
+          "country": {
+            "$ref": "#/$defs/text",
+            "description": "the country, as written"
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this stay"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the stay"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the stay; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                },
+                "sliceIds": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id",
+                    "description": "a slice this stay belonged to. Left empty (the usual), it belongs to every slice its dates overlap; naming slices confines it to them, which matters where slices overlap: a stay named to a hidden chapter is spoken of only to those who know of that chapter, where it would otherwise be told to everyone who knows the open chapter around it; and a home makes household only the people of the slices it names"
+                  },
+                  "description": "a slice this stay belonged to. Left empty (the usual), it belongs to every slice its dates overlap; naming slices confines it to them, which matters where slices overlap: a stay named to a hidden chapter is spoken of only to those who know of that chapter, where it would otherwise be told to everyone who knows the open chapter around it; and a home makes household only the people of the slices it names"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate",
+                "sliceIds"
+              ],
+              "description": "A stay: a span of time the place was part of life."
+            },
+            "description": "A stay: a span of time the place was part of life."
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "what the place was like"
+          },
+          "internalThoughts": {
+            "$ref": "#/$defs/longText",
+            "description": "how the persona privately felt about it"
+          },
+          "relationshipIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "someone who was in this place with the persona"
+            },
+            "description": "someone who was in this place with the persona"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members were in this place too"
+            },
+            "description": "a group whose members were in this place too"
+          },
+          "visibility": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "enum": [
+                  "public",
+                  "secret",
+                  "selective",
+                  "nobody"
+                ],
+                "description": "public: anyone; secret: only its people; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+              },
+              "relationshipIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "someone else let in at selective"
+                },
+                "description": "someone else let in at selective"
+              },
+              "relationshipGroupIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "a group whose members are let in at selective"
+                },
+                "description": "a group whose members are let in at selective"
+              },
+              "note": {
+                "$ref": "#/$defs/longText",
+                "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "relationshipIds",
+              "relationshipGroupIds",
+              "note"
+            ],
+            "description": "Who could know about this place. Whoever it does not let in never hears of it."
+          },
+          "media": {
+            "type": "object",
+            "properties": {
+              "corners": {
+                "type": "object",
+                "properties": {
+                  "frontLeft": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the front-left corner"
+                  },
+                  "frontRight": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the front-right corner"
+                  },
+                  "backRight": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the back-right corner"
+                  },
+                  "backLeft": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the back-left corner"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "frontLeft",
+                  "frontRight",
+                  "backRight",
+                  "backLeft"
+                ],
+                "description": "Toward each corner, in the order taken turning clockwise."
+              },
+              "walls": {
+                "type": "object",
+                "properties": {
+                  "front": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the front wall"
+                  },
+                  "right": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the right wall"
+                  },
+                  "back": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the back wall"
+                  },
+                  "left": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/pictureFile"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "toward the left wall"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "front",
+                  "right",
+                  "back",
+                  "left"
+                ],
+                "description": "Toward each wall, halfway between the corners it joins."
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "corners",
+              "walls"
+            ],
+            "description": "Photos of the room, all taken from its middle turning on the spot: one toward each corner (all four are needed to build a 3D model of the room) and, if wanted, one toward each wall between them, eight views in all at 45° steps."
+          },
+          "presentation": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "$ref": "#/$defs/longText",
+                "description": "how the persona came across to the people here"
+              },
+              "names": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/text",
+                  "description": "a name the people here called the persona by, such as a nickname (the profile holds the real one)"
+                },
+                "description": "a name the people here called the persona by, such as a nickname (the profile holds the real one)"
+              },
+              "picture": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "how the people who knew the persona only here saw them; null for the profile's picture"
+              },
+              "genderPresentation": {
+                "enum": [
+                  "man",
+                  "woman",
+                  "gnc_man",
+                  "gnc_woman",
+                  null
+                ],
+                "description": "presented differently here than the profile says; null for as the profile has it"
+              },
+              "pronouns": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pronouns"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "went by other pronouns here; null for as the profile has it"
+              },
+              "primaryLanguage": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/language"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "mostly spoke another language here; null for as the profile has it"
+              },
+              "accent": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/accent"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "spoke with another accent here; null for as the profile has it"
+              },
+              "sexualOrientation": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/sexualOrientation"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the orientation the people here were told of; null for as the profile has it"
+              },
+              "romanticOrientation": {
+                "enum": [
+                  "unspecified",
+                  "romantic",
+                  "demiromantic",
+                  "aromantic",
+                  null
+                ],
+                "description": "the romantic orientation the people here were told of; null for as the profile has it"
+              },
+              "politicalOrientation": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/politicalOrientation"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the politics the people here were told of; null for as the profile has it"
+              },
+              "religion": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/religion"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the religion the people here were told of; null for as the profile has it"
+              },
+              "likes": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/text"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the likes the people here knew of; null for the profile's, [] for none"
+              },
+              "dislikes": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/text"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the dislikes the people here knew of; null for the profile's, [] for none"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "description",
+              "names",
+              "picture",
+              "genderPresentation",
+              "pronouns",
+              "primaryLanguage",
+              "accent",
+              "sexualOrientation",
+              "romanticOrientation",
+              "politicalOrientation",
+              "religion",
+              "likes",
+              "dislikes"
+            ],
+            "description": "How the persona came across here, where it differed from the profile in effect. How they looked, sounded and were called applies to anyone here; their orientation, politics, religion and tastes are what the people here were told."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "city",
+          "region",
+          "country",
+          "periods",
+          "description",
+          "internalThoughts",
+          "relationshipIds",
+          "relationshipGroupIds",
+          "visibility",
+          "media",
+          "presentation"
+        ],
+        "description": "A place in the persona's life: a home, a workplace, a place people gathered, an online space. Each is one room or space, with when it was part of life (its periods), the people in it, and how the persona came across there."
+      },
+      "description": "A place in the persona's life: a home, a workplace, a place people gathered, an online space. Each is one room or space, with when it was part of life (its periods), the people in it, and how the persona came across there."
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this school"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what the school is called (\"Lincoln High School\", \"University of Leeds\")"
+          },
+          "kind": {
+            "enum": [
+              "early",
+              "primary",
+              "middle",
+              "secondary",
+              "undergraduate",
+              "graduate",
+              "vocational",
+              "course",
+              "home",
+              "other"
+            ],
+            "description": "early: a nursery, preschool or kindergarten; primary: a primary or elementary school; middle: a middle school or junior high; secondary: a secondary or high school; undergraduate: a college or university, for a first degree; graduate: a graduate or professional school; vocational: a trade school or apprenticeship; course: a course or class taken alongside the rest of life; home: homeschooling; other: anything else"
+          },
+          "fieldOfStudy": {
+            "$ref": "#/$defs/text",
+            "description": "what was studied there: a major, subjects, a trade; may be left empty"
+          },
+          "qualification": {
+            "$ref": "#/$defs/text",
+            "description": "what it led to, or was working towards (\"High school diploma\", \"BSc Chemistry\"); may be left empty"
+          },
+          "outcome": {
+            "enum": [
+              "unspecified",
+              "completed",
+              "left",
+              "transferred"
+            ],
+            "description": "how the persona's time there ended: completed it, left before finishing, or moved to another school; unspecified while it goes on or when not said. Only told once the last period has ended"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "what it was like, and what the persona did there"
+          },
+          "internalThoughts": {
+            "$ref": "#/$defs/longText",
+            "description": "how the persona privately felt about it"
+          },
+          "typicalDays": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this typical day"
+                },
+                "days": {
+                  "anyOf": [
+                    {
+                      "const": "all"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/weekday"
+                      }
+                    }
+                  ],
+                  "description": "all for every day, or the weekdays it was like this"
+                },
+                "description": {
+                  "$ref": "#/$defs/longText",
+                  "description": "what such a day looked like"
+                },
+                "activities": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/text",
+                    "description": "something done on such a day"
+                  },
+                  "description": "something done on such a day"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "days",
+                "description",
+                "activities"
+              ],
+              "description": "A typical day at the school, every day or on the weekdays given."
+            },
+            "description": "A typical day at the school, every day or on the weekdays given."
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this spell"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the spell"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the spell; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate"
+              ],
+              "description": "A spell at the school; going back after a break is a second one."
+            },
+            "description": "A spell at the school; going back after a break is a second one."
+          },
+          "relationshipIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "someone the persona knew there: a classmate, a teacher, a roommate"
+            },
+            "description": "someone the persona knew there: a classmate, a teacher, a roommate"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members were there too"
+            },
+            "description": "a group whose members were there too"
+          },
+          "placeIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a place it was attended at: the campus, the school building, an online space"
+            },
+            "description": "a place it was attended at: the campus, the school building, an online space"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "fieldOfStudy",
+          "qualification",
+          "outcome",
+          "description",
+          "internalThoughts",
+          "typicalDays",
+          "periods",
+          "relationshipIds",
+          "relationshipGroupIds",
+          "placeIds"
+        ],
+        "description": "A school the persona went to, from a nursery to a university, an apprenticeship or a class. Several may run at once. Who may know of it follows from the places it was attended at (anyone at all when it names none), and the people the persona knew there."
+      },
+      "description": "A school the persona went to, from a nursery to a university, an apprenticeship or a class. Several may run at once. Who may know of it follows from the places it was attended at (anyone at all when it names none), and the people the persona knew there."
+    },
+    "property": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this thing"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what it is"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "what it was like"
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this span"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the span"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the span; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate"
+              ],
+              "description": "A span of time the persona had it."
+            },
+            "description": "A span of time the persona had it."
+          },
+          "internalThoughts": {
+            "$ref": "#/$defs/longText",
+            "description": "how the persona privately felt about it"
+          },
+          "relationshipIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "someone who knew of it, whether they used it, saw it or only heard of it"
+            },
+            "description": "someone who knew of it, whether they used it, saw it or only heard of it"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members knew of it"
+            },
+            "description": "a group whose members knew of it"
+          },
+          "placeIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a place it was kept or used in"
+            },
+            "description": "a place it was kept or used in"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "description",
+          "periods",
+          "internalThoughts",
+          "relationshipIds",
+          "relationshipGroupIds",
+          "placeIds"
+        ],
+        "description": "Something the persona owned. Who may know of it follows from the places it was kept (anyone at all when it names none), and the people who knew of it."
+      },
+      "description": "Something the persona owned. Who may know of it follows from the places it was kept (anyone at all when it names none), and the people who knew of it."
+    },
+    "pets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this pet"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what the pet was called"
+          },
+          "species": {
+            "enum": [
+              "dog",
+              "cat",
+              "bird",
+              "rabbit",
+              "rodent",
+              "fish",
+              "reptile",
+              "horse",
+              "other"
+            ],
+            "description": "what kind of animal it is: rodent for a hamster, guinea pig, rat and the like; reptile for amphibians too; horse for ponies too"
+          },
+          "breed": {
+            "$ref": "#/$defs/text",
+            "description": "the breed or variety (\"Border collie\", \"tabby\", \"budgie\"); may be left empty"
+          },
+          "size": {
+            "enum": [
+              "tiny",
+              "small",
+              "medium",
+              "large",
+              "giant"
+            ],
+            "description": "how big it is: tiny fits in a hand, small is lap-sized (a cat), medium knee-high (a collie), large a Labrador, giant a Great Dane or a horse; medium for one the reader does not know"
+          },
+          "coat": {
+            "$ref": "#/$defs/text",
+            "description": "what it looked like (\"black with a white chest and socks\"); may be left empty"
+          },
+          "birthDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the day it was born; null when nobody knows"
+          },
+          "birthDateApproximate": {
+            "type": "boolean",
+            "description": "true when the birth date is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it is null"
+          },
+          "deathDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the day it died; null while living, when it died on a day nobody recorded, and when it left the persona's life some other way (outcome says which)"
+          },
+          "deathDateApproximate": {
+            "type": "boolean",
+            "description": "true when the death date is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it is null"
+          },
+          "outcome": {
+            "enum": [
+              "unspecified",
+              "died",
+              "rehomed",
+              "lost"
+            ],
+            "description": "how it left the persona's life: died, rehomed (given away, or went to another home) or lost (ran off, strayed); unspecified while it is still part of their life or when nobody says; always died with a deathDate. Told only once its last period has ended"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "who it was: its temperament, its habits"
+          },
+          "internalThoughts": {
+            "$ref": "#/$defs/longText",
+            "description": "how the persona privately felt about it"
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this span"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the span"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the span; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate"
+              ],
+              "description": "A span of time the pet was part of the persona's life."
+            },
+            "description": "A span of time the pet was part of the persona's life."
+          },
+          "relationshipIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "someone who shared the pet or knew it well"
+            },
+            "description": "someone who shared the pet or knew it well"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members knew it"
+            },
+            "description": "a group whose members knew it"
+          },
+          "placeIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a home it lived at"
+            },
+            "description": "a home it lived at"
+          },
+          "picture": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/pictureFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "a photo of the pet"
+          },
+          "photos": {
+            "type": "object",
+            "properties": {
+              "front": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "from the front, or three-quarters on"
+              },
+              "side": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "side on"
+              },
+              "back": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "from behind"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "front",
+              "side",
+              "back"
+            ],
+            "description": "The photos its 3D model is made from, the animal whole in each."
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "$ref": "#/$defs/avatarFile",
+                    "description": "the model"
+                  },
+                  "createdAt": {
+                    "$ref": "#/$defs/timestamp",
+                    "description": "when the model was made"
+                  },
+                  "pose": {
+                    "enum": [
+                      "lying",
+                      "sitting",
+                      "standing",
+                      "perched"
+                    ],
+                    "description": "how the animal holds itself in the model, which says how it is set down in a room; standing for one the reader does not know"
+                  },
+                  "uploaded": {
+                    "type": "boolean",
+                    "description": "whether the model was supplied as it is, rather than made from the photos"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "file",
+                  "createdAt",
+                  "pose",
+                  "uploaded"
+                ],
+                "description": "The pet's 3D model, a textured mesh, or null when there is none."
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The pet's 3D model, a textured mesh, or null when there is none."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "species",
+          "breed",
+          "size",
+          "coat",
+          "birthDate",
+          "birthDateApproximate",
+          "deathDate",
+          "deathDateApproximate",
+          "outcome",
+          "description",
+          "internalThoughts",
+          "periods",
+          "relationshipIds",
+          "relationshipGroupIds",
+          "placeIds",
+          "picture",
+          "photos",
+          "model"
+        ],
+        "description": "An animal the persona lived with or looked after. It never speaks in a conversation, but is there at a home it lived at, while it was alive and part of the persona's life. Who may know of it follows from its homes (anyone at all when it names none), and the people who shared it."
+      },
+      "description": "An animal the persona lived with or looked after. It never speaks in a conversation, but is there at a home it lived at, while it was alive and part of the persona's life. Who may know of it follows from its homes (anyone at all when it names none), and the people who shared it."
+    },
+    "career": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this job"
+          },
+          "title": {
+            "$ref": "#/$defs/text",
+            "description": "what to call the job (\"Line cook at Denny's\", \"Freelance illustrator\")"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "what the job was, and what it involved"
+          },
+          "typicalDays": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this typical day"
+                },
+                "days": {
+                  "anyOf": [
+                    {
+                      "const": "all"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/weekday"
+                      }
+                    }
+                  ],
+                  "description": "all for every day, or the weekdays it was like this"
+                },
+                "description": {
+                  "$ref": "#/$defs/longText",
+                  "description": "what such a day looked like"
+                },
+                "activities": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/text",
+                    "description": "something done on such a day"
+                  },
+                  "description": "something done on such a day"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "days",
+                "description",
+                "activities"
+              ],
+              "description": "A typical day at work, every day or on the weekdays given."
+            },
+            "description": "A typical day at work, every day or on the weekdays given."
+          },
+          "placeIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a place the work was done from (home counts)"
+            },
+            "description": "a place the work was done from (home counts)"
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this spell"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the spell"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the spell; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate"
+              ],
+              "description": "A spell in the job."
+            },
+            "description": "A spell in the job."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "description",
+          "typicalDays",
+          "placeIds",
+          "periods"
+        ],
+        "description": "A job. Several may run at once. Its coworkers are the people of the places it was done from. Who may know of it follows from those places: anyone who may know one of them, or anyone at all when it names none; a job kept secret is one done only from places kept secret."
+      },
+      "description": "A job. Several may run at once. Its coworkers are the people of the places it was done from. Who may know of it follows from those places: anyone who may know one of them, or anyone at all when it names none; a job kept secret is one done only from places kept secret."
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this person; never main, which stands for the persona where a person is named (a look's who)"
+          },
+          "label": {
+            "$ref": "#/$defs/text",
+            "description": "how this person is referred to as a whole, as their own persona would be named; what the persona called them at a time is on the period"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "who this person is overall, for someone with no persona of their own"
+          },
+          "birthDate": {
+            "$ref": "#/$defs/date",
+            "description": "the day this person was born (1000-01-01 or later), estimated when not known; for someone with a persona of their own, that persona's"
+          },
+          "birthDateApproximate": {
+            "type": "boolean",
+            "description": "true when the birth date is only approximate, a best guess by someone who does not remember the day; false when it is known; true for an estimate"
+          },
+          "deathDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the day this person died; null while living, and for someone who died on a day nobody recorded (deceased)"
+          },
+          "deathDateApproximate": {
+            "type": "boolean",
+            "description": "true when the death date is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it is null"
+          },
+          "deceased": {
+            "type": "boolean",
+            "description": "whether this person has died: true when they have died, with or without a deathDate; false while living. Someone deceased with no deathDate is taken to have lived to 80, or to the latest end date of their periods if that is later (a null end date runs until the death, so does not count)"
+          },
+          "personaId": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the id of a persona standing for this person (the id in their own persona.json); null when there is none"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group this person is in; they may be in several (Family and Book Club both), or none"
+            },
+            "description": "a group this person is in; they may be in several (Family and Book Club both), or none"
+          },
+          "picture": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/pictureFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "a photo of this person; their own persona's picture for the day, when they have one, comes first"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/audioFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "a recording of this person's voice; their own persona's voice, when they have one, comes first"
+          },
+          "avatar": {
+            "type": "object",
+            "properties": {
+              "front": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "this person's face, from the front"
+              },
+              "left": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "this person's face, turned to the left"
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "this person's face, turned to the right"
+              },
+              "body": {
+                "enum": [
+                  "man",
+                  "woman",
+                  null
+                ],
+                "description": "the body the model is built on; null until chosen"
+              },
+              "model": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "$ref": "#/$defs/avatarFile",
+                        "description": "the model"
+                      },
+                      "createdAt": {
+                        "$ref": "#/$defs/timestamp",
+                        "description": "when the model was made"
+                      },
+                      "faceAnimations": {
+                        "type": "boolean",
+                        "description": "whether the model carries face blend shapes, for lip-sync and expressions"
+                      },
+                      "uploaded": {
+                        "type": "boolean",
+                        "description": "whether the model was supplied as it is, rather than made from the photos of the face"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "file",
+                      "createdAt",
+                      "faceAnimations",
+                      "uploaded"
+                    ],
+                    "description": "The rigged 3D model of the avatar, or null when there is none."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "The rigged 3D model of the avatar, or null when there is none."
+              },
+              "dress": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "wardrobe": {
+                        "$ref": "#/$defs/text",
+                        "description": "the wardrobe the ids here are from, named for the service that builds the model: avaturn for Avaturn (avaturn.me). A reader that does not dress avatars from it reads every id here, and the build, as null"
+                      },
+                      "clothing": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the outfit, by its id in the wardrobe; null for its default"
+                      },
+                      "hair": {
+                        "anyOf": [
+                          {
+                            "const": "none"
+                          },
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the hair or headwear, by its id in the wardrobe; none for no hair or headwear; null for the default"
+                      },
+                      "hairColor": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/color"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the color of the hair; null for the default"
+                      },
+                      "eyewear": {
+                        "anyOf": [
+                          {
+                            "const": "none"
+                          },
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the glasses, by its id in the wardrobe; none for no glasses; null for the default"
+                      },
+                      "footwear": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/text"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "the shoes, by its id in the wardrobe; null for the default"
+                      },
+                      "build": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/$defs/build"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "one of the wardrobe's five body builds; null for the default"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "wardrobe",
+                      "clothing",
+                      "hair",
+                      "hairColor",
+                      "eyewear",
+                      "footwear",
+                      "build"
+                    ],
+                    "description": "What the avatar wears, or null for the defaults throughout."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "What the avatar wears, or null for the defaults throughout."
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "front",
+              "left",
+              "right",
+              "body",
+              "model",
+              "dress"
+            ],
+            "description": "This person's 3D avatar: three photos of the face, the body it is built on, the model made from them, and what it wears. Their own persona's avatar for the day, when they have one, comes first."
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this stretch"
+                },
+                "startDate": {
+                  "$ref": "#/$defs/date",
+                  "description": "the first day of the stretch"
+                },
+                "startDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "endDate": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the last day of the stretch; null while it goes on"
+                },
+                "endDateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+                },
+                "sliceIds": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id",
+                    "description": "a slice this stretch belonged to. Left empty (the usual), it belongs to every slice its dates overlap; naming slices confines it to them, which matters where slices overlap: this person was then one of the people of the slices named alone, knowing the persona through those and seeing them as those show them; and a selective slice is known to the people whose periods name it"
+                  },
+                  "description": "a slice this stretch belonged to. Left empty (the usual), it belongs to every slice its dates overlap; naming slices confines it to them, which matters where slices overlap: this person was then one of the people of the slices named alone, knowing the persona through those and seeing them as those show them; and a selective slice is known to the people whose periods name it"
+                },
+                "name": {
+                  "$ref": "#/$defs/text",
+                  "description": "what the persona called this person during this stretch (\"Tommy\", \"my husband Tom\")"
+                },
+                "pronouns": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/pronouns"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the pronouns this person went by during this stretch, which can change as a name can; any for any pronouns, name_only for none (the name instead); null when not said"
+                },
+                "kind": {
+                  "$ref": "#/$defs/kind",
+                  "description": "what this person was to the persona: partner is a life partner, romantic a romantic connection; parent and stepparent when no gender is said; teacher and mentor someone who taught or guided the persona, student someone the persona taught or guided; other someone no other kind fits; averse someone they were at odds with, not_speaking someone they were not speaking to"
+                },
+                "seenProfileId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/id"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the profile this person knew the persona as; null for whoever the persona actually was at the time"
+                },
+                "treatment": {
+                  "$ref": "#/$defs/longText",
+                  "description": "how this person treated the persona (their side)"
+                },
+                "feelings": {
+                  "$ref": "#/$defs/longText",
+                  "description": "how the persona felt about this person (the persona's side, private)"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "startDate",
+                "startDateApproximate",
+                "endDate",
+                "endDateApproximate",
+                "sliceIds",
+                "name",
+                "pronouns",
+                "kind",
+                "seenProfileId",
+                "treatment",
+                "feelings"
+              ],
+              "description": "A stretch of the relationship: what this person was to the persona, and how each treated the other."
+            },
+            "description": "A stretch of the relationship: what this person was to the persona, and how each treated the other."
+          },
+          "visibility": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "enum": [
+                  "public",
+                  "secret",
+                  "selective",
+                  "nobody"
+                ],
+                "description": "public: anyone; secret: only this person; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+              },
+              "relationshipIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "someone else let in at selective"
+                },
+                "description": "someone else let in at selective"
+              },
+              "relationshipGroupIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "a group whose members are let in at selective"
+                },
+                "description": "a group whose members are let in at selective"
+              },
+              "note": {
+                "$ref": "#/$defs/longText",
+                "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "relationshipIds",
+              "relationshipGroupIds",
+              "note"
+            ],
+            "description": "Who could know about this relationship. Whoever it does not let in never hears of it."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "description",
+          "birthDate",
+          "birthDateApproximate",
+          "deathDate",
+          "deathDateApproximate",
+          "deceased",
+          "personaId",
+          "relationshipGroupIds",
+          "picture",
+          "voice",
+          "avatar",
+          "periods",
+          "visibility"
+        ],
+        "description": "A person in the persona's life. Everything about them that changed over time, their name included, is on their periods; when they were part of the persona's life is the span of those periods."
+      },
+      "description": "A person in the persona's life. Everything about them that changed over time, their name included, is on their periods; when they were part of the persona's life is the span of those periods."
+    },
+    "relationshipGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this group"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what the group is called"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name"
+        ],
+        "description": "A group of people (Family, Church friends). Someone is in it by naming it among their relationshipGroupIds, and may be in any number of groups. Slices, places, schools, property, pets, events and visibility may name a group in place of its people: that means whoever is in it when the file is read."
+      },
+      "description": "A group of people (Family, Church friends). Someone is in it by naming it among their relationshipGroupIds, and may be in any number of groups. Slices, places, schools, property, pets, events and visibility may name a group in place of its people: that means whoever is in it when the file is read."
+    },
+    "slices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this slice"
+          },
+          "title": {
+            "$ref": "#/$defs/text",
+            "description": "what the chapter is called"
+          },
+          "startDate": {
+            "$ref": "#/$defs/date",
+            "description": "the first day of the chapter"
+          },
+          "startDateApproximate": {
+            "type": "boolean",
+            "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+          },
+          "endDate": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "the last day of the chapter; null while it goes on"
+          },
+          "endDateApproximate": {
+            "type": "boolean",
+            "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known, and while it goes on"
+          },
+          "transitionBefore": {
+            "$ref": "#/$defs/longText",
+            "description": "the change that led into the chapter: a graduation, coming out, a diagnosis, and the questioning or upheaval around it; empty when there was none"
+          },
+          "definingCharacteristics": {
+            "$ref": "#/$defs/longText",
+            "description": "what defined the chapter"
+          },
+          "visibility": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "enum": [
+                  "public",
+                  "secret",
+                  "selective",
+                  "nobody"
+                ],
+                "description": "public: anyone; secret: the persona alone, kept even from the people in it; selective: only the people and groups listed here, the people whose periods name it (sliceIds) and the members of its relationshipGroupIds, not everyone whose dates overlap it; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+              },
+              "relationshipIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "someone else let in at selective"
+                },
+                "description": "someone else let in at selective"
+              },
+              "relationshipGroupIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "a group whose members are let in at selective"
+                },
+                "description": "a group whose members are let in at selective"
+              },
+              "note": {
+                "$ref": "#/$defs/longText",
+                "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "relationshipIds",
+              "relationshipGroupIds",
+              "note"
+            ],
+            "description": "Who could know about this chapter. Whoever it does not let in never hears of it."
+          },
+          "typicalDays": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this typical day"
+                },
+                "days": {
+                  "anyOf": [
+                    {
+                      "const": "all"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/weekday"
+                      }
+                    }
+                  ],
+                  "description": "all for every day, or the weekdays it was like this"
+                },
+                "description": {
+                  "$ref": "#/$defs/longText",
+                  "description": "what such a day looked like"
+                },
+                "activities": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/text",
+                    "description": "something done on such a day"
+                  },
+                  "description": "something done on such a day"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "days",
+                "description",
+                "activities"
+              ],
+              "description": "A typical day during the chapter, every day or on the weekdays given."
+            },
+            "description": "A typical day during the chapter, every day or on the weekdays given."
+          },
+          "internalThoughts": {
+            "$ref": "#/$defs/longText",
+            "description": "what was going on inside during the chapter"
+          },
+          "tendencyOverrides": {
+            "type": "object",
+            "properties": {
+              "attentiveness": {
+                "$ref": "#/$defs/score",
+                "description": "attentiveness during this slice"
+              },
+              "extraversion": {
+                "$ref": "#/$defs/score",
+                "description": "extraversion during this slice"
+              },
+              "agreeableness": {
+                "$ref": "#/$defs/score",
+                "description": "agreeableness during this slice"
+              },
+              "neuroticism": {
+                "$ref": "#/$defs/score",
+                "description": "neuroticism during this slice"
+              },
+              "ambition": {
+                "$ref": "#/$defs/score",
+                "description": "ambition during this slice"
+              },
+              "emotionality": {
+                "$ref": "#/$defs/score",
+                "description": "emotionality during this slice"
+              }
+            },
+            "additionalProperties": false,
+            "description": "The core tendencies this slice changes, each replacing the core value while it lasts; an axis it leaves alone is left out."
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members were part of the chapter for its whole span, beside the people whose periods overlap it"
+            },
+            "description": "a group whose members were part of the chapter for its whole span, beside the people whose periods overlap it"
+          },
+          "presentation": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "$ref": "#/$defs/longText",
+                "description": "how the persona came across to the people during this chapter"
+              },
+              "names": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/text",
+                  "description": "a name the people during this chapter called the persona by, such as a nickname (the profile holds the real one)"
+                },
+                "description": "a name the people during this chapter called the persona by, such as a nickname (the profile holds the real one)"
+              },
+              "picture": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pictureFile"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "how the people who knew the persona only during this chapter saw them; null for the profile's picture"
+              },
+              "genderPresentation": {
+                "enum": [
+                  "man",
+                  "woman",
+                  "gnc_man",
+                  "gnc_woman",
+                  null
+                ],
+                "description": "presented differently during this chapter than the profile says; null for as the profile has it"
+              },
+              "pronouns": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/pronouns"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "went by other pronouns during this chapter; null for as the profile has it"
+              },
+              "primaryLanguage": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/language"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "mostly spoke another language during this chapter; null for as the profile has it"
+              },
+              "accent": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/accent"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "spoke with another accent during this chapter; null for as the profile has it"
+              },
+              "sexualOrientation": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/sexualOrientation"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the orientation the people during this chapter were told of; null for as the profile has it"
+              },
+              "romanticOrientation": {
+                "enum": [
+                  "unspecified",
+                  "romantic",
+                  "demiromantic",
+                  "aromantic",
+                  null
+                ],
+                "description": "the romantic orientation the people during this chapter were told of; null for as the profile has it"
+              },
+              "politicalOrientation": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/politicalOrientation"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the politics the people during this chapter were told of; null for as the profile has it"
+              },
+              "religion": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/religion"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the religion the people during this chapter were told of; null for as the profile has it"
+              },
+              "likes": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/text"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the likes the people during this chapter knew of; null for the profile's, [] for none"
+              },
+              "dislikes": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/text"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "the dislikes the people during this chapter knew of; null for the profile's, [] for none"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "description",
+              "names",
+              "picture",
+              "genderPresentation",
+              "pronouns",
+              "primaryLanguage",
+              "accent",
+              "sexualOrientation",
+              "romanticOrientation",
+              "politicalOrientation",
+              "religion",
+              "likes",
+              "dislikes"
+            ],
+            "description": "How the persona came across during this chapter, where it differed from the profile in effect. How they looked, sounded and were called applies to anyone during this chapter; their orientation, politics, religion and tastes are what the people during this chapter were told."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "startDate",
+          "startDateApproximate",
+          "endDate",
+          "endDateApproximate",
+          "transitionBefore",
+          "definingCharacteristics",
+          "visibility",
+          "typicalDays",
+          "internalThoughts",
+          "tendencyOverrides",
+          "relationshipGroupIds",
+          "presentation"
+        ],
+        "description": "A chapter of life (school years, a marriage, life in a city): a stretch with its own character, typical days and inner life. Slices may overlap, a hidden chapter inside an open one. People and places belong to the slices their periods overlap, unless a period names its slices (sliceIds)."
+      },
+      "description": "A chapter of life (school years, a marriage, life in a city): a stretch with its own character, typical days and inner life. Slices may overlap, a hidden chapter inside an open one. People and places belong to the slices their periods overlap, unless a period names its slices (sliceIds)."
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id",
+            "description": "this event"
+          },
+          "name": {
+            "$ref": "#/$defs/text",
+            "description": "what the occasion is called"
+          },
+          "startDate": {
+            "$ref": "#/$defs/date",
+            "description": "the first day"
+          },
+          "startDateApproximate": {
+            "type": "boolean",
+            "description": "true when the first day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+          },
+          "endDate": {
+            "$ref": "#/$defs/date",
+            "description": "the last day; an event always ends, at most 30 days in"
+          },
+          "endDateApproximate": {
+            "type": "boolean",
+            "description": "true when the last day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+          },
+          "description": {
+            "$ref": "#/$defs/longText",
+            "description": "what the occasion was"
+          },
+          "whatHappened": {
+            "$ref": "#/$defs/longText",
+            "description": "the story of the day or days"
+          },
+          "relationshipIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "someone who was there"
+            },
+            "description": "someone who was there"
+          },
+          "relationshipGroupIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id",
+              "description": "a group whose members were there too"
+            },
+            "description": "a group whose members were there too"
+          },
+          "placeId": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/id"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "where it happened; null when not known"
+          },
+          "subEvents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this part"
+                },
+                "name": {
+                  "$ref": "#/$defs/text",
+                  "description": "what the part is called"
+                },
+                "date": {
+                  "$ref": "#/$defs/date",
+                  "description": "the day it happened, one of the event's"
+                },
+                "dateApproximate": {
+                  "type": "boolean",
+                  "description": "true when the day is only approximate, a best guess by someone who does not remember the day; false when it is known"
+                },
+                "description": {
+                  "$ref": "#/$defs/longText",
+                  "description": "what happened in it"
+                },
+                "placeId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/id"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "where it happened; null for the event's place"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "name",
+                "date",
+                "dateApproximate",
+                "description",
+                "placeId"
+              ],
+              "description": "One part of the event, on one of its days (the ceremony and the reception of a wedding)."
+            },
+            "description": "One part of the event, on one of its days (the ceremony and the reception of a wedding)."
+          },
+          "looks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id",
+                  "description": "this look"
+                },
+                "who": {
+                  "anyOf": [
+                    {
+                      "const": "main"
+                    },
+                    {
+                      "$ref": "#/$defs/id"
+                    }
+                  ],
+                  "description": "whom it dresses: main for the persona, or one of the people"
+                },
+                "subEventId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/id"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "the part of the event it is for; null for the whole event"
+                },
+                "dress": {
+                  "type": "object",
+                  "properties": {
+                    "wardrobe": {
+                      "$ref": "#/$defs/text",
+                      "description": "the wardrobe the ids here are from, named for the service that builds the model: avaturn for Avaturn (avaturn.me). A reader that does not dress avatars from it reads every id here, and the build, as null"
+                    },
+                    "clothing": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/text"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "the outfit, by its id in the wardrobe; null for its default"
+                    },
+                    "hair": {
+                      "anyOf": [
+                        {
+                          "const": "none"
+                        },
+                        {
+                          "$ref": "#/$defs/text"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "the hair or headwear, by its id in the wardrobe; none for no hair or headwear; null for the default"
+                    },
+                    "hairColor": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/color"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "the color of the hair; null for the default"
+                    },
+                    "eyewear": {
+                      "anyOf": [
+                        {
+                          "const": "none"
+                        },
+                        {
+                          "$ref": "#/$defs/text"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "the glasses, by its id in the wardrobe; none for no glasses; null for the default"
+                    },
+                    "footwear": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/text"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "the shoes, by its id in the wardrobe; null for the default"
+                    },
+                    "build": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/build"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "one of the wardrobe's five body builds; null for the default"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "wardrobe",
+                    "clothing",
+                    "hair",
+                    "hairColor",
+                    "eyewear",
+                    "footwear",
+                    "build"
+                  ],
+                  "description": "What they wear."
+                },
+                "model": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "file": {
+                          "$ref": "#/$defs/avatarFile",
+                          "description": "the model"
+                        },
+                        "createdAt": {
+                          "$ref": "#/$defs/timestamp",
+                          "description": "when the model was made"
+                        },
+                        "faceAnimations": {
+                          "type": "boolean",
+                          "description": "whether the model carries face blend shapes, for lip-sync and expressions"
+                        },
+                        "uploaded": {
+                          "type": "boolean",
+                          "description": "whether the model was supplied as it is, rather than made from the photos of the face"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "file",
+                        "createdAt",
+                        "faceAnimations",
+                        "uploaded"
+                      ],
+                      "description": "The rigged 3D model of them dressed so, or null when there is none."
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The rigged 3D model of them dressed so, or null when there is none."
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "who",
+                "subEventId",
+                "dress",
+                "model"
+              ],
+              "description": "Someone at the event dressed for it, or for one part of it: their avatar in the clothes chosen, which stands in for their usual one at the event."
+            },
+            "description": "Someone at the event dressed for it, or for one part of it: their avatar in the clothes chosen, which stands in for their usual one at the event."
+          },
+          "picture": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/pictureFile"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "a photo of the occasion, shown to the people who were there"
+          },
+          "visibility": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "enum": [
+                  "public",
+                  "secret",
+                  "selective",
+                  "nobody"
+                ],
+                "description": "public: anyone; secret: only the people there; selective: those, and the people and groups listed here; nobody: no one, not even in the persona's own conversations; secret for one the reader does not know. Usually public"
+              },
+              "relationshipIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "someone else let in at selective"
+                },
+                "description": "someone else let in at selective"
+              },
+              "relationshipGroupIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id",
+                  "description": "a group whose members are let in at selective"
+                },
+                "description": "a group whose members are let in at selective"
+              },
+              "note": {
+                "$ref": "#/$defs/longText",
+                "description": "a note on who knew, for whoever keeps the persona; never said in a conversation"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "relationshipIds",
+              "relationshipGroupIds",
+              "note"
+            ],
+            "description": "Who could know about this event, among those who may hear of the part of life it fell in. Whoever it does not let in never hears of it."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "startDate",
+          "startDateApproximate",
+          "endDate",
+          "endDateApproximate",
+          "description",
+          "whatHappened",
+          "relationshipIds",
+          "relationshipGroupIds",
+          "placeId",
+          "subEvents",
+          "looks",
+          "picture",
+          "visibility"
+        ],
+        "description": "A specific occasion lasting a day to 30 days (a wedding, a trip, a funeral), with the people who were there. A conversation can be set at one."
+      },
+      "description": "A specific occasion lasting a day to 30 days (a wedding, a trip, a funeral), with the people who were there. A conversation can be set at one."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "spec",
+    "specVersion",
+    "id",
+    "personaName",
+    "birthDate",
+    "birthDateApproximate",
+    "deathDate",
+    "deathDateApproximate",
+    "deceased",
+    "core",
+    "profiles",
+    "health",
+    "places",
+    "education",
+    "property",
+    "pets",
+    "career",
+    "relationships",
+    "relationshipGroups",
+    "slices",
+    "events"
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "text of up to 200 characters"
+    },
+    "longText": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "text of up to 5,000 characters"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "description": "a day, YYYY-MM-DD"
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$",
+      "description": "a moment in time, ISO 8601 in UTC (2026-02-01T00:00:00.000Z)"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "description": "a UUID"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "1 to 64 characters naming the item, unique among the file's items of its kind; other fields refer to it by this"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "a number from 0 (lowest) to 100 (highest); 50 is the middle of the scale"
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "a color: # and six hexadecimal digits"
+    },
+    "pictureFile": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^[^./\\\\][^/\\\\]*\\.([jJ][pP][eE]?[gG]|[pP][nN][gG]|[wW][eE][bB][pP])$",
+      "description": "the plain name (no folder, up to 200 characters, not starting with a dot) of a file in the package's pictures/ folder: .jpg, .jpeg, .png, .webp"
+    },
+    "audioFile": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^[^./\\\\][^/\\\\]*\\.([mM][pP]3|[wW][aA][vV]|[wW][eE][bB][mM]|[oO][gG][gG]|[mM]4[aA])$",
+      "description": "the plain name (no folder, up to 200 characters, not starting with a dot) of a file in the package's audio/ folder: .mp3, .wav, .webm, .ogg, .m4a"
+    },
+    "avatarFile": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^[^./\\\\][^/\\\\]*\\.[gG][lL][bB]$",
+      "description": "the plain name (no folder, up to 200 characters, not starting with a dot) of a file in the package's avatars/ folder: .glb (a glTF binary: rigged for a person's avatar, a plain textured mesh for a pet)"
+    },
+    "country": {
+      "type": "string",
+      "enum": [
+        "AF",
+        "AX",
+        "AL",
+        "DZ",
+        "AS",
+        "AD",
+        "AO",
+        "AI",
+        "AQ",
+        "AG",
+        "AR",
+        "AM",
+        "AW",
+        "AU",
+        "AT",
+        "AZ",
+        "BS",
+        "BH",
+        "BD",
+        "BB",
+        "BY",
+        "BE",
+        "BZ",
+        "BJ",
+        "BM",
+        "BT",
+        "BO",
+        "BQ",
+        "BA",
+        "BW",
+        "BV",
+        "BR",
+        "IO",
+        "BN",
+        "BG",
+        "BF",
+        "BI",
+        "CV",
+        "KH",
+        "CM",
+        "CA",
+        "KY",
+        "CF",
+        "TD",
+        "CL",
+        "CN",
+        "CX",
+        "CC",
+        "CO",
+        "KM",
+        "CG",
+        "CD",
+        "CK",
+        "CR",
+        "CI",
+        "HR",
+        "CU",
+        "CW",
+        "CY",
+        "CZ",
+        "DK",
+        "DJ",
+        "DM",
+        "DO",
+        "EC",
+        "EG",
+        "SV",
+        "GQ",
+        "ER",
+        "EE",
+        "SZ",
+        "ET",
+        "FK",
+        "FO",
+        "FJ",
+        "FI",
+        "FR",
+        "GF",
+        "PF",
+        "TF",
+        "GA",
+        "GM",
+        "GE",
+        "DE",
+        "GH",
+        "GI",
+        "GR",
+        "GL",
+        "GD",
+        "GP",
+        "GU",
+        "GT",
+        "GG",
+        "GN",
+        "GW",
+        "GY",
+        "HT",
+        "HM",
+        "VA",
+        "HN",
+        "HK",
+        "HU",
+        "IS",
+        "IN",
+        "ID",
+        "IR",
+        "IQ",
+        "IE",
+        "IM",
+        "IL",
+        "IT",
+        "JM",
+        "JP",
+        "JE",
+        "JO",
+        "KZ",
+        "KE",
+        "KI",
+        "KP",
+        "KR",
+        "KW",
+        "KG",
+        "LA",
+        "LV",
+        "LB",
+        "LS",
+        "LR",
+        "LY",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MG",
+        "MW",
+        "MY",
+        "MV",
+        "ML",
+        "MT",
+        "MH",
+        "MQ",
+        "MR",
+        "MU",
+        "YT",
+        "MX",
+        "FM",
+        "MD",
+        "MC",
+        "MN",
+        "ME",
+        "MS",
+        "MA",
+        "MZ",
+        "MM",
+        "NA",
+        "NR",
+        "NP",
+        "NL",
+        "NC",
+        "NZ",
+        "NI",
+        "NE",
+        "NG",
+        "NU",
+        "NF",
+        "MK",
+        "MP",
+        "NO",
+        "OM",
+        "PK",
+        "PW",
+        "PS",
+        "PA",
+        "PG",
+        "PY",
+        "PE",
+        "PH",
+        "PN",
+        "PL",
+        "PT",
+        "PR",
+        "QA",
+        "RE",
+        "RO",
+        "RU",
+        "RW",
+        "BL",
+        "SH",
+        "KN",
+        "LC",
+        "MF",
+        "PM",
+        "VC",
+        "WS",
+        "SM",
+        "ST",
+        "SA",
+        "SN",
+        "RS",
+        "SC",
+        "SL",
+        "SG",
+        "SX",
+        "SK",
+        "SI",
+        "SB",
+        "SO",
+        "ZA",
+        "GS",
+        "SS",
+        "ES",
+        "LK",
+        "SD",
+        "SR",
+        "SJ",
+        "SE",
+        "CH",
+        "SY",
+        "TW",
+        "TJ",
+        "TZ",
+        "TH",
+        "TL",
+        "TG",
+        "TK",
+        "TO",
+        "TT",
+        "TN",
+        "TR",
+        "TM",
+        "TC",
+        "TV",
+        "UG",
+        "UA",
+        "AE",
+        "GB",
+        "US",
+        "UM",
+        "UY",
+        "UZ",
+        "VU",
+        "VE",
+        "VN",
+        "VG",
+        "VI",
+        "WF",
+        "EH",
+        "YE",
+        "ZM",
+        "ZW"
+      ]
+    },
+    "culturalBackground": {
+      "type": "string",
+      "enum": [
+        "white_american",
+        "african_american",
+        "hispanic_latino_american",
+        "afro_latino",
+        "british_irish",
+        "western_european",
+        "german_austrian_swiss",
+        "northern_european",
+        "southern_european",
+        "central_european",
+        "eastern_european",
+        "balkan",
+        "baltic",
+        "jewish_ashkenazi",
+        "jewish_sephardic_mizrahi",
+        "romani",
+        "arab_levantine",
+        "arab_gulf",
+        "arab_iraqi",
+        "arab_egyptian",
+        "arab_north_african",
+        "amazigh",
+        "persian",
+        "turkish",
+        "kurdish",
+        "israeli",
+        "armenian",
+        "caucasus",
+        "west_african",
+        "east_african",
+        "horn_of_africa",
+        "central_african",
+        "southern_african",
+        "afrikaner",
+        "indian",
+        "pakistani",
+        "bangladeshi",
+        "sri_lankan",
+        "nepali",
+        "afghan",
+        "central_asian",
+        "chinese",
+        "taiwanese",
+        "hong_kong",
+        "japanese",
+        "korean",
+        "mongolian",
+        "tibetan",
+        "vietnamese",
+        "thai",
+        "lao",
+        "khmer",
+        "burmese",
+        "hmong",
+        "filipino",
+        "indonesian",
+        "malay",
+        "singaporean",
+        "anglo_australian",
+        "aboriginal_australian",
+        "pakeha",
+        "maori",
+        "pacific_islander",
+        "melanesian",
+        "asian_american",
+        "native_american",
+        "cajun_creole",
+        "anglo_canadian",
+        "quebecois",
+        "mexican",
+        "central_american",
+        "caribbean_hispanic",
+        "caribbean_anglophone",
+        "haitian",
+        "colombian_venezuelan",
+        "andean",
+        "brazilian",
+        "southern_cone",
+        "indigenous_latin_american",
+        "mixed",
+        "other"
+      ]
+    },
+    "pronouns": {
+      "type": "string",
+      "enum": [
+        "he_him",
+        "she_her",
+        "they_them",
+        "he_they",
+        "she_they",
+        "it_its",
+        "any",
+        "name_only"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "sv",
+        "no",
+        "da",
+        "fi",
+        "is",
+        "pl",
+        "cs",
+        "sk",
+        "hu",
+        "ro",
+        "bg",
+        "hr",
+        "sr",
+        "sl",
+        "sq",
+        "uk",
+        "ru",
+        "el",
+        "tr",
+        "he",
+        "yi",
+        "ar",
+        "fa",
+        "ku",
+        "ps",
+        "ur",
+        "hi",
+        "bn",
+        "pa",
+        "gu",
+        "ta",
+        "te",
+        "ml",
+        "kn",
+        "mr",
+        "si",
+        "ne",
+        "th",
+        "vi",
+        "id",
+        "ms",
+        "tl",
+        "mi",
+        "zh",
+        "yue",
+        "ja",
+        "ko",
+        "sw",
+        "so",
+        "am",
+        "ha",
+        "yo",
+        "ig",
+        "zu",
+        "af",
+        "ga",
+        "cy",
+        "eu",
+        "ca",
+        "gl",
+        "lt",
+        "lv",
+        "et",
+        "ka",
+        "hy",
+        "az",
+        "kk",
+        "uz",
+        "mn",
+        "km",
+        "lo",
+        "hmn",
+        "my",
+        "ht",
+        "la",
+        "ase"
+      ]
+    },
+    "accent": {
+      "type": "string",
+      "enum": [
+        "none",
+        "us_general",
+        "us_new_england",
+        "us_nyc",
+        "us_mid_atlantic",
+        "us_southern",
+        "us_texan",
+        "us_appalachian",
+        "us_cajun",
+        "us_inland_north",
+        "us_upper_midwest",
+        "us_midland",
+        "us_western",
+        "us_californian",
+        "us_pacific_nw",
+        "us_hawaiian",
+        "us_aave",
+        "us_chicano",
+        "us_new_york_latino",
+        "us_pennsylvania_dutch",
+        "gb_rp",
+        "gb_cockney",
+        "gb_estuary",
+        "gb_mle",
+        "gb_west_country",
+        "gb_brummie",
+        "gb_black_country",
+        "gb_scouse",
+        "gb_mancunian",
+        "gb_lancashire",
+        "gb_yorkshire",
+        "gb_geordie",
+        "gb_mackem",
+        "gb_cumbrian",
+        "gb_east_anglian",
+        "gb_east_midlands",
+        "gb_welsh_south",
+        "gb_welsh_north",
+        "gb_scottish_glasgow",
+        "gb_scottish_edinburgh",
+        "gb_scottish_highland",
+        "gb_scottish_doric",
+        "gb_northern_irish",
+        "gb_ulster_rural",
+        "ie_dublin",
+        "ie_cork",
+        "ie_kerry",
+        "ie_galway",
+        "ie_donegal",
+        "ie_midlands",
+        "ie_limerick",
+        "ie_waterford",
+        "ca_standard",
+        "ca_maritime",
+        "ca_newfoundland",
+        "ca_cape_breton",
+        "ca_quebec_english",
+        "ca_ottawa_valley",
+        "ca_prairie",
+        "ca_west_coast",
+        "ca_northern",
+        "ca_quebec_french",
+        "ca_quebec_french_regional",
+        "ca_acadian",
+        "ca_franco_ontarian",
+        "au_general",
+        "au_broad",
+        "au_cultivated",
+        "au_sydney",
+        "au_melbourne",
+        "au_queensland",
+        "au_south_australian",
+        "au_western",
+        "au_tasmanian",
+        "au_aboriginal",
+        "au_outback",
+        "nz_general",
+        "nz_auckland",
+        "nz_wellington",
+        "nz_southland",
+        "nz_maori_english",
+        "nz_west_coast",
+        "in_delhi",
+        "in_punjabi",
+        "in_haryanvi",
+        "in_up_bihar",
+        "in_rajasthani",
+        "in_gujarati",
+        "in_mumbai",
+        "in_marathi",
+        "in_bengali",
+        "in_odia",
+        "in_hyderabadi",
+        "in_telugu",
+        "in_tamil",
+        "in_malayali",
+        "in_kannada",
+        "in_goan",
+        "in_kashmiri",
+        "in_northeast",
+        "in_anglo_indian",
+        "pk_karachi",
+        "pk_lahore",
+        "pk_sindhi",
+        "pk_pashto",
+        "pk_balochi",
+        "pk_kashmiri",
+        "pk_saraiki",
+        "bd_dhaka",
+        "bd_chittagong",
+        "bd_sylhet",
+        "bd_noakhali",
+        "bd_barisal",
+        "bd_rajshahi",
+        "lk_colombo",
+        "lk_kandy",
+        "lk_southern",
+        "lk_jaffna",
+        "lk_eastern",
+        "lk_burgher",
+        "np_kathmandu",
+        "np_terai",
+        "np_eastern",
+        "np_western",
+        "np_newar",
+        "np_sherpa",
+        "de_standard",
+        "de_bavarian",
+        "de_franconian",
+        "de_swabian",
+        "de_badisch",
+        "de_palatine",
+        "de_hessian",
+        "de_rhineland",
+        "de_ruhr",
+        "de_berlin",
+        "de_saxon",
+        "de_thuringian",
+        "de_low_german",
+        "de_east_frisian",
+        "de_mecklenburg",
+        "at_viennese",
+        "at_lower_austrian",
+        "at_upper_austrian",
+        "at_styrian",
+        "at_carinthian",
+        "at_salzburg",
+        "at_tyrolean",
+        "at_vorarlberg",
+        "ch_zurich",
+        "ch_bern",
+        "ch_basel",
+        "ch_lucerne",
+        "ch_valais",
+        "ch_graubunden",
+        "ch_french",
+        "ch_italian",
+        "ch_romansh",
+        "fr_parisian",
+        "fr_northern",
+        "fr_norman",
+        "fr_breton",
+        "fr_alsatian",
+        "fr_lorraine",
+        "fr_lyonnais",
+        "fr_savoyard",
+        "fr_provencal",
+        "fr_nicois",
+        "fr_toulousain",
+        "fr_bordelais",
+        "fr_basque",
+        "fr_corsican",
+        "fr_overseas_antilles",
+        "fr_overseas_reunion",
+        "be_antwerp",
+        "be_west_flemish",
+        "be_east_flemish",
+        "be_limburgish",
+        "be_brabantian",
+        "be_brussels_dutch",
+        "be_brussels_french",
+        "be_liege",
+        "be_namur",
+        "be_charleroi",
+        "be_german",
+        "nl_standard",
+        "nl_amsterdam",
+        "nl_rotterdam",
+        "nl_hague",
+        "nl_utrecht",
+        "nl_brabant",
+        "nl_limburg",
+        "nl_gelderland",
+        "nl_twente",
+        "nl_groningen",
+        "nl_frisian",
+        "nl_zeeland",
+        "nl_indo",
+        "lu_luxembourgish",
+        "lu_french",
+        "lu_german",
+        "es_castilian",
+        "es_castile_leon",
+        "es_andalusian_west",
+        "es_andalusian_east",
+        "es_extremaduran",
+        "es_murcian",
+        "es_valencian",
+        "es_catalan",
+        "es_balearic",
+        "es_aragonese",
+        "es_basque",
+        "es_navarrese",
+        "es_cantabrian",
+        "es_asturian",
+        "es_galician",
+        "es_canarian",
+        "es_la_mancha",
+        "pt_lisbon",
+        "pt_porto",
+        "pt_minho",
+        "pt_tras_os_montes",
+        "pt_beira",
+        "pt_alentejo",
+        "pt_algarve",
+        "pt_azores",
+        "pt_madeira",
+        "it_standard",
+        "it_tuscan",
+        "it_roman",
+        "it_milanese",
+        "it_piedmontese",
+        "it_genoese",
+        "it_venetian",
+        "it_trentino",
+        "it_friulian",
+        "it_emilian",
+        "it_romagnol",
+        "it_marche",
+        "it_umbrian",
+        "it_abruzzese",
+        "it_neapolitan",
+        "it_apulian",
+        "it_salentino",
+        "it_lucanian",
+        "it_calabrian",
+        "it_sicilian",
+        "it_sardinian",
+        "gr_athens",
+        "gr_thessaloniki",
+        "gr_peloponnese",
+        "gr_cretan",
+        "gr_ionian",
+        "gr_aegean",
+        "gr_epirus",
+        "gr_thrace",
+        "gr_pontic",
+        "cy_greek_cypriot",
+        "cy_turkish_cypriot",
+        "cy_nicosia",
+        "cy_limassol",
+        "cy_paphos",
+        "mt_valletta",
+        "mt_gozitan",
+        "mt_rural",
+        "se_stockholm",
+        "se_uppland",
+        "se_gothenburg",
+        "se_scanian",
+        "se_smaland",
+        "se_gotland",
+        "se_dalarna",
+        "se_varmland",
+        "se_norrland",
+        "se_rinkeby",
+        "no_oslo_east",
+        "no_oslo_west",
+        "no_ostfold",
+        "no_bergen",
+        "no_stavanger",
+        "no_sorlandet",
+        "no_trondelag",
+        "no_nordnorsk",
+        "no_innlandet",
+        "no_sunnmore",
+        "dk_copenhagen",
+        "dk_zealand",
+        "dk_funen",
+        "dk_east_jutland",
+        "dk_west_jutland",
+        "dk_north_jutland",
+        "dk_south_jutland",
+        "dk_bornholm",
+        "fi_helsinki",
+        "fi_turku",
+        "fi_tampere",
+        "fi_savo",
+        "fi_karelian",
+        "fi_ostrobothnian",
+        "fi_oulu",
+        "fi_lapland",
+        "fi_swedish",
+        "is_reykjavik",
+        "is_northern",
+        "is_westfjords",
+        "is_eastern",
+        "pl_warsaw",
+        "pl_masovian",
+        "pl_lesser_poland",
+        "pl_podhale",
+        "pl_silesian",
+        "pl_greater_poland",
+        "pl_pomeranian",
+        "pl_kashubian",
+        "pl_lodz",
+        "pl_lublin",
+        "pl_podlasie",
+        "pl_kresy",
+        "pl_lower_silesia",
+        "cz_prague",
+        "cz_bohemian",
+        "cz_moravian_brno",
+        "cz_hana",
+        "cz_silesian",
+        "cz_wallachian",
+        "cz_moravian_slovak",
+        "sk_bratislava",
+        "sk_central",
+        "sk_eastern",
+        "sk_zahorie",
+        "sk_hungarian",
+        "hu_budapest",
+        "hu_transdanubian",
+        "hu_great_plain",
+        "hu_paloc",
+        "hu_szekely",
+        "ro_bucharest",
+        "ro_oltenian",
+        "ro_moldavian",
+        "ro_transylvanian",
+        "ro_banat",
+        "ro_maramures",
+        "ro_dobrogea",
+        "ro_hungarian",
+        "bg_sofia",
+        "bg_plovdiv",
+        "bg_varna",
+        "bg_northern",
+        "bg_rhodope",
+        "bg_shopi",
+        "bg_macedonian",
+        "ua_kyiv",
+        "ua_lviv",
+        "ua_transcarpathian",
+        "ua_volyn",
+        "ua_podillia",
+        "ua_poltava",
+        "ua_kharkiv",
+        "ua_donbas",
+        "ua_odesa",
+        "ua_crimean",
+        "ua_surzhyk",
+        "ru_moscow",
+        "ru_petersburg",
+        "ru_northern",
+        "ru_volga",
+        "ru_southern",
+        "ru_ural",
+        "ru_siberian",
+        "ru_far_east",
+        "ru_caucasus",
+        "ru_tatar",
+        "ru_dagestani",
+        "by_minsk",
+        "by_western",
+        "by_eastern",
+        "by_polesian",
+        "by_trasianka",
+        "lt_vilnius",
+        "lt_kaunas",
+        "lt_samogitian",
+        "lt_dzukian",
+        "lt_suvalkian",
+        "lv_riga",
+        "lv_latgalian",
+        "lv_livonian",
+        "lv_vidzeme",
+        "lv_russian",
+        "ee_tallinn",
+        "ee_tartu",
+        "ee_voro",
+        "ee_saaremaa",
+        "ee_russian",
+        "hr_zagreb",
+        "hr_slavonian",
+        "hr_dalmatian",
+        "hr_dubrovnik",
+        "hr_istrian",
+        "hr_rijeka",
+        "hr_lika",
+        "rs_belgrade",
+        "rs_vojvodina",
+        "rs_southern",
+        "rs_sumadija",
+        "rs_sandzak",
+        "rs_kosovo",
+        "ba_sarajevo",
+        "ba_banja_luka",
+        "ba_herzegovina",
+        "ba_tuzla",
+        "ba_krajina",
+        "si_ljubljana",
+        "si_styrian",
+        "si_littoral",
+        "si_carinthian",
+        "si_prekmurje",
+        "si_upper_carniola",
+        "si_lower_carniola",
+        "mk_skopje",
+        "mk_western",
+        "mk_eastern",
+        "mk_albanian",
+        "me_podgorica",
+        "me_coastal",
+        "me_northern",
+        "al_tirana",
+        "al_gheg",
+        "al_tosk",
+        "al_lab",
+        "al_cham",
+        "al_kosovar",
+        "md_chisinau",
+        "md_northern",
+        "md_gagauz",
+        "md_transnistrian",
+        "tr_istanbul",
+        "tr_thracian",
+        "tr_aegean",
+        "tr_mediterranean",
+        "tr_central",
+        "tr_black_sea",
+        "tr_eastern",
+        "tr_southeastern",
+        "tr_kurdish",
+        "tr_laz",
+        "tr_cypriot",
+        "il_tel_aviv",
+        "il_jerusalem",
+        "il_haifa",
+        "il_southern",
+        "il_mizrahi",
+        "il_yemenite",
+        "il_ashkenazi",
+        "il_russian",
+        "il_arab",
+        "il_haredi",
+        "ps_jerusalem",
+        "ps_west_bank_north",
+        "ps_hebron",
+        "ps_gaza",
+        "ps_bedouin",
+        "ps_fellahi",
+        "lb_beirut",
+        "lb_mount_lebanon",
+        "lb_north",
+        "lb_south",
+        "lb_bekaa",
+        "lb_armenian",
+        "sy_damascus",
+        "sy_aleppo",
+        "sy_homs",
+        "sy_coastal",
+        "sy_deir_ezzor",
+        "sy_hauran",
+        "sy_kurdish",
+        "sy_druze",
+        "jo_amman",
+        "jo_northern",
+        "jo_southern",
+        "jo_bedouin",
+        "jo_palestinian",
+        "iq_baghdad",
+        "iq_basra",
+        "iq_mosul",
+        "iq_kurdish_erbil",
+        "iq_kurdish_sulaymaniyah",
+        "iq_kurdish_duhok",
+        "iq_anbar",
+        "iq_marsh",
+        "iq_assyrian",
+        "ir_tehrani",
+        "ir_isfahani",
+        "ir_shirazi",
+        "ir_mashhadi",
+        "ir_tabrizi",
+        "ir_gilaki",
+        "ir_mazandarani",
+        "ir_kurdish",
+        "ir_lori",
+        "ir_bandari",
+        "ir_baluchi",
+        "ir_arab",
+        "ir_yazdi",
+        "sa_najdi",
+        "sa_hejazi",
+        "sa_eastern",
+        "sa_southern",
+        "sa_northern",
+        "sa_bedouin",
+        "ae_emirati",
+        "ae_northern_emirates",
+        "ae_bedouin",
+        "ae_ajami",
+        "kw_hadari",
+        "kw_bedouin",
+        "qa_doha",
+        "qa_bedouin",
+        "bh_baharna",
+        "bh_arab",
+        "om_muscat",
+        "om_interior",
+        "om_dhofari",
+        "om_batinah",
+        "om_zanzibari",
+        "ye_sanaani",
+        "ye_adeni",
+        "ye_taizzi",
+        "ye_hadhrami",
+        "ye_tihami",
+        "eg_cairene",
+        "eg_alexandrian",
+        "eg_delta",
+        "eg_saidi",
+        "eg_nubian",
+        "eg_sinai",
+        "eg_canal",
+        "ma_casablanca",
+        "ma_rabat",
+        "ma_fassi",
+        "ma_marrakchi",
+        "ma_northern",
+        "ma_oriental",
+        "ma_amazigh_rif",
+        "ma_amazigh_atlas",
+        "ma_amazigh_souss",
+        "ma_hassani",
+        "dz_algiers",
+        "dz_oran",
+        "dz_constantine",
+        "dz_kabyle",
+        "dz_chaoui",
+        "dz_saharan",
+        "tn_tunis",
+        "tn_sahel",
+        "tn_sfax",
+        "tn_northwest",
+        "tn_southern",
+        "tn_djerba",
+        "ly_tripoli",
+        "ly_benghazi",
+        "ly_fezzan",
+        "ly_misrata",
+        "ly_amazigh",
+        "sd_khartoum",
+        "sd_northern",
+        "sd_darfur",
+        "sd_kordofan",
+        "sd_eastern",
+        "sd_jazira",
+        "ng_lagos",
+        "ng_yoruba",
+        "ng_igbo",
+        "ng_hausa",
+        "ng_fulani",
+        "ng_niger_delta",
+        "ng_edo",
+        "ng_efik_ibibio",
+        "ng_tiv",
+        "ng_kanuri",
+        "ng_pidgin",
+        "ng_abuja",
+        "gh_accra",
+        "gh_akan",
+        "gh_fante",
+        "gh_ewe",
+        "gh_ga",
+        "gh_northern",
+        "gh_pidgin",
+        "sn_dakar",
+        "sn_wolof",
+        "sn_pulaar",
+        "sn_serer",
+        "sn_casamance",
+        "sn_saint_louis",
+        "ci_abidjan",
+        "ci_baoule",
+        "ci_bete",
+        "ci_dioula",
+        "ci_senoufo",
+        "cm_douala",
+        "cm_yaounde",
+        "cm_anglophone_northwest",
+        "cm_anglophone_southwest",
+        "cm_northern",
+        "cm_bamileke",
+        "cm_pidgin",
+        "et_addis",
+        "et_amhara",
+        "et_oromo",
+        "et_tigrayan",
+        "et_gurage",
+        "et_somali",
+        "et_sidama",
+        "et_afar",
+        "et_harari",
+        "er_asmara",
+        "er_tigrinya",
+        "er_tigre",
+        "er_saho",
+        "er_massawa",
+        "so_mogadishu",
+        "so_northern",
+        "so_puntland",
+        "so_southern",
+        "so_maay",
+        "ke_nairobi",
+        "ke_coastal",
+        "ke_kikuyu",
+        "ke_luo",
+        "ke_luhya",
+        "ke_kalenjin",
+        "ke_kamba",
+        "ke_somali",
+        "ke_maasai",
+        "ke_sheng",
+        "tz_dar",
+        "tz_zanzibar",
+        "tz_northern",
+        "tz_lake",
+        "tz_southern",
+        "tz_coastal",
+        "ug_kampala",
+        "ug_western",
+        "ug_eastern",
+        "ug_northern",
+        "ug_west_nile",
+        "ug_karamoja",
+        "rw_kigali",
+        "rw_northern",
+        "rw_southern",
+        "rw_returnee",
+        "cd_kinshasa",
+        "cd_lubumbashi",
+        "cd_kisangani",
+        "cd_kivu",
+        "cd_kasai",
+        "cd_bas_congo",
+        "cd_equateur",
+        "za_general_white",
+        "za_cape_town",
+        "za_johannesburg",
+        "za_durban",
+        "za_afrikaans",
+        "za_cape_flats",
+        "za_black_sae",
+        "za_indian",
+        "za_zulu",
+        "za_xhosa",
+        "za_sotho",
+        "za_pretoria",
+        "zw_harare",
+        "zw_shona",
+        "zw_ndebele",
+        "zw_white",
+        "zw_manicaland",
+        "zm_lusaka",
+        "zm_copperbelt",
+        "zm_southern",
+        "zm_eastern",
+        "zm_western",
+        "mw_lilongwe",
+        "mw_blantyre",
+        "mw_northern",
+        "mw_yao",
+        "mz_maputo",
+        "mz_beira",
+        "mz_nampula",
+        "mz_zambezia",
+        "na_windhoek",
+        "na_afrikaans",
+        "na_oshiwambo",
+        "na_herero",
+        "na_damara_nama",
+        "na_german",
+        "bw_gaborone",
+        "bw_setswana",
+        "bw_kalanga",
+        "bw_northern",
+        "ao_luanda",
+        "ao_benguela",
+        "ao_huambo",
+        "ao_northern",
+        "ao_cabinda",
+        "mg_antananarivo",
+        "mg_coastal_east",
+        "mg_south",
+        "mg_north",
+        "mg_betsileo",
+        "mu_creole",
+        "mu_franco",
+        "mu_indo",
+        "mu_sino",
+        "cn_beijing",
+        "cn_dongbei",
+        "cn_tianjin",
+        "cn_shandong",
+        "cn_henan",
+        "cn_shaanxi",
+        "cn_shanxi",
+        "cn_sichuan",
+        "cn_yunnan",
+        "cn_guizhou",
+        "cn_hubei",
+        "cn_hunan",
+        "cn_jiangxi",
+        "cn_shanghai",
+        "cn_jiangsu",
+        "cn_zhejiang",
+        "cn_fujian",
+        "cn_guangdong",
+        "cn_hakka",
+        "cn_guangxi",
+        "cn_hainan",
+        "cn_xinjiang",
+        "cn_tibet",
+        "cn_inner_mongolia",
+        "cn_gansu",
+        "tw_taipei",
+        "tw_taichung",
+        "tw_tainan",
+        "tw_kaohsiung",
+        "tw_hokkien",
+        "tw_hakka",
+        "tw_indigenous",
+        "tw_waishengren",
+        "hk_cantonese",
+        "hk_english",
+        "hk_new_territories",
+        "hk_tanka",
+        "mo_cantonese",
+        "mo_patua",
+        "mo_portuguese",
+        "jp_tokyo",
+        "jp_shitamachi",
+        "jp_kanto",
+        "jp_tohoku",
+        "jp_hokkaido",
+        "jp_nagoya",
+        "jp_hokuriku",
+        "jp_osaka",
+        "jp_kyoto",
+        "jp_kobe",
+        "jp_hiroshima",
+        "jp_shikoku",
+        "jp_hakata",
+        "jp_kagoshima",
+        "jp_kumamoto",
+        "jp_okinawa",
+        "kr_seoul",
+        "kr_gyeonggi",
+        "kr_gangwon",
+        "kr_chungcheong",
+        "kr_jeolla",
+        "kr_gyeongsang_busan",
+        "kr_gyeongsang_daegu",
+        "kr_jeju",
+        "kr_north_korean",
+        "kp_pyongyang",
+        "kp_hamgyong",
+        "kp_pyongan",
+        "kp_hwanghae",
+        "mn_ulaanbaatar",
+        "mn_western",
+        "mn_eastern",
+        "mn_gobi",
+        "vn_hanoi",
+        "vn_haiphong",
+        "vn_nghe_an",
+        "vn_hue",
+        "vn_da_nang",
+        "vn_quy_nhon",
+        "vn_saigon",
+        "vn_mekong",
+        "vn_highlands",
+        "th_bangkok",
+        "th_isan",
+        "th_northern",
+        "th_southern",
+        "th_eastern",
+        "th_chinese",
+        "th_malay",
+        "kh_phnom_penh",
+        "kh_battambang",
+        "kh_siem_reap",
+        "kh_kampot",
+        "kh_khmer_krom",
+        "kh_northern_khmer",
+        "la_vientiane",
+        "la_luang_prabang",
+        "la_southern",
+        "la_hmong",
+        "la_northern",
+        "mm_yangon",
+        "mm_mandalay",
+        "mm_rakhine",
+        "mm_shan",
+        "mm_karen",
+        "mm_kachin",
+        "mm_mon",
+        "mm_chin",
+        "mm_tavoyan",
+        "mm_rohingya",
+        "my_kl",
+        "my_kelantan",
+        "my_terengganu",
+        "my_penang",
+        "my_johor",
+        "my_perak",
+        "my_kedah",
+        "my_sabah",
+        "my_sarawak",
+        "my_chinese",
+        "my_indian",
+        "my_manglish",
+        "sg_singlish",
+        "sg_standard",
+        "sg_chinese",
+        "sg_malay",
+        "sg_indian",
+        "sg_eurasian",
+        "id_jakarta",
+        "id_javanese_central",
+        "id_javanese_east",
+        "id_sundanese",
+        "id_balinese",
+        "id_medan",
+        "id_minang",
+        "id_palembang",
+        "id_acehnese",
+        "id_banjar",
+        "id_makassar",
+        "id_manado",
+        "id_ambon",
+        "id_papuan",
+        "id_ntt",
+        "id_madurese",
+        "ph_manila",
+        "ph_batangas",
+        "ph_ilocano",
+        "ph_kapampangan",
+        "ph_pangasinan",
+        "ph_bicolano",
+        "ph_cebuano",
+        "ph_ilonggo",
+        "ph_waray",
+        "ph_davao",
+        "ph_chavacano",
+        "ph_maranao_tausug",
+        "ph_conyo",
+        "tl_dili",
+        "tl_eastern",
+        "tl_western",
+        "pg_tok_pisin",
+        "pg_port_moresby",
+        "pg_highlands",
+        "pg_sepik",
+        "pg_islands",
+        "pg_hiri_motu",
+        "fj_itaukei",
+        "fj_indo",
+        "fj_suva",
+        "fj_western",
+        "kz_almaty",
+        "kz_astana",
+        "kz_southern",
+        "kz_western",
+        "kz_russian",
+        "uz_tashkent",
+        "uz_fergana",
+        "uz_samarkand",
+        "uz_khorezm",
+        "uz_karakalpak",
+        "kg_bishkek",
+        "kg_osh",
+        "kg_issyk_kul",
+        "tj_dushanbe",
+        "tj_khujand",
+        "tj_pamiri",
+        "tj_kulob",
+        "tm_ashgabat",
+        "tm_yomut",
+        "tm_ersary",
+        "af_kabuli",
+        "af_herati",
+        "af_hazaragi",
+        "af_kandahari",
+        "af_eastern_pashto",
+        "af_mazari",
+        "af_uzbek",
+        "af_panjshiri",
+        "af_nuristani",
+        "ge_tbilisi",
+        "ge_kakheti",
+        "ge_imereti",
+        "ge_megrelian",
+        "ge_svan",
+        "ge_gurian",
+        "ge_adjarian",
+        "ge_mountain",
+        "am_yerevan",
+        "am_gyumri",
+        "am_lori",
+        "am_syunik",
+        "am_artsakh",
+        "am_western",
+        "az_baku",
+        "az_ganja",
+        "az_lankaran",
+        "az_nakhchivan",
+        "az_sheki",
+        "az_karabakh",
+        "mx_cdmx",
+        "mx_norteno",
+        "mx_chihuahua",
+        "mx_bajacaliforniano",
+        "mx_tapatio",
+        "mx_bajio",
+        "mx_jarocho",
+        "mx_poblano",
+        "mx_oaxaca",
+        "mx_chiapas",
+        "mx_yucateco",
+        "mx_costeno",
+        "mx_indigena",
+        "mx_fresa",
+        "gt_capital",
+        "gt_oriente",
+        "gt_occidente",
+        "gt_maya",
+        "gt_costa",
+        "gt_garifuna",
+        "hn_tegucigalpa",
+        "hn_san_pedro",
+        "hn_olancho",
+        "hn_costa",
+        "hn_garifuna",
+        "hn_bay_islands",
+        "sv_san_salvador",
+        "sv_oriente",
+        "sv_occidente",
+        "sv_rural",
+        "ni_managua",
+        "ni_leon",
+        "ni_granada",
+        "ni_norte",
+        "ni_caribe",
+        "ni_miskito",
+        "cr_valle_central",
+        "cr_guanacaste",
+        "cr_limon",
+        "cr_puntarenas",
+        "cr_cartago",
+        "cr_zona_sur",
+        "pa_ciudad",
+        "pa_interior",
+        "pa_colon",
+        "pa_bocas",
+        "pa_indigena",
+        "cu_habana",
+        "cu_occidental",
+        "cu_central",
+        "cu_oriental",
+        "do_capitaleno",
+        "do_cibaeno",
+        "do_sureno",
+        "do_este",
+        "do_samana",
+        "pr_san_juan",
+        "pr_isla",
+        "pr_ponce",
+        "pr_oeste",
+        "pr_nuyorican",
+        "jm_kingston_uptown",
+        "jm_kingston_downtown",
+        "jm_rural",
+        "jm_montego_bay",
+        "jm_standard",
+        "tt_trinidadian",
+        "tt_tobagonian",
+        "tt_port_of_spain",
+        "tt_south",
+        "tt_indo",
+        "tt_afro",
+        "bb_bajan",
+        "bb_bridgetown",
+        "bb_standard",
+        "bs_nassau",
+        "bs_family_islands",
+        "bs_grand_bahama",
+        "ht_port_au_prince",
+        "ht_cap_haitien",
+        "ht_sud",
+        "ht_artibonite",
+        "ht_french",
+        "bz_kriol",
+        "bz_belize_city",
+        "bz_mestizo",
+        "bz_garifuna",
+        "bz_maya",
+        "gy_georgetown",
+        "gy_creolese",
+        "gy_indo",
+        "gy_afro",
+        "gy_interior",
+        "sr_paramaribo",
+        "sr_sranan",
+        "sr_hindustani",
+        "sr_javanese",
+        "sr_maroon",
+        "co_bogota",
+        "co_paisa",
+        "co_costeno",
+        "co_valluno",
+        "co_santandereano",
+        "co_opita",
+        "co_llanero",
+        "co_pastuso",
+        "co_cundiboyacense",
+        "co_pacifico",
+        "co_isleno",
+        "co_amazonico",
+        "ve_caraqueno",
+        "ve_maracucho",
+        "ve_andino",
+        "ve_oriental",
+        "ve_llanero",
+        "ve_guaro",
+        "ve_central",
+        "ve_guayanes",
+        "ec_quiteno",
+        "ec_guayaquileno",
+        "ec_cuencano",
+        "ec_lojano",
+        "ec_manabita",
+        "ec_esmeraldeno",
+        "ec_amazonico",
+        "ec_kichwa",
+        "pe_limeno",
+        "pe_norteno",
+        "pe_arequipeno",
+        "pe_cusqueno",
+        "pe_ayacuchano",
+        "pe_huancaino",
+        "pe_puneno",
+        "pe_charapa",
+        "pe_quechua",
+        "pe_aimara",
+        "bo_paceno",
+        "bo_cochabambino",
+        "bo_camba",
+        "bo_chapaco",
+        "bo_potosino",
+        "bo_beniano",
+        "bo_quechua",
+        "bo_aymara",
+        "br_paulistano",
+        "br_caipira",
+        "br_carioca",
+        "br_fluminense",
+        "br_mineiro",
+        "br_capixaba",
+        "br_gaucho",
+        "br_catarinense",
+        "br_paranaense",
+        "br_baiano",
+        "br_pernambucano",
+        "br_cearense",
+        "br_paraibano",
+        "br_sertanejo",
+        "br_maranhense",
+        "br_amazonico",
+        "br_brasiliense",
+        "br_goiano",
+        "br_sulista_german",
+        "ar_porteno",
+        "ar_bonaerense",
+        "ar_cordobes",
+        "ar_rosarino",
+        "ar_cuyano",
+        "ar_norteno",
+        "ar_santiagueno",
+        "ar_correntino",
+        "ar_patagonico",
+        "ar_entrerriano",
+        "cl_santiago",
+        "cl_cuico",
+        "cl_flaite",
+        "cl_porteno",
+        "cl_nortino",
+        "cl_sureno",
+        "cl_chilote",
+        "cl_magallanico",
+        "cl_mapuche",
+        "uy_montevideano",
+        "uy_interior",
+        "uy_fronterizo",
+        "uy_rochense",
+        "py_asunceno",
+        "py_jopara",
+        "py_guarani",
+        "py_interior",
+        "py_mennonite"
+      ]
+    },
+    "sexualOrientation": {
+      "type": "string",
+      "enum": [
+        "unspecified",
+        "men",
+        "women",
+        "men_and_women",
+        "demi_men",
+        "demi_women",
+        "demi_men_and_women",
+        "asexual"
+      ]
+    },
+    "politicalOrientation": {
+      "type": "string",
+      "enum": [
+        "unspecified",
+        "far_left",
+        "left",
+        "center",
+        "right",
+        "far_right"
+      ]
+    },
+    "religion": {
+      "type": "string",
+      "enum": [
+        "unspecified",
+        "none",
+        "agnostic",
+        "atheist",
+        "spiritual",
+        "christian",
+        "catholic",
+        "eastern_orthodox",
+        "oriental_orthodox",
+        "protestant",
+        "anglican",
+        "baptist",
+        "lutheran",
+        "methodist",
+        "presbyterian",
+        "pentecostal",
+        "evangelical",
+        "adventist",
+        "quaker",
+        "mennonite",
+        "lds",
+        "jehovahs_witness",
+        "muslim",
+        "sunni",
+        "shia",
+        "sufi",
+        "ahmadiyya",
+        "jewish",
+        "orthodox_jewish",
+        "conservative_jewish",
+        "reform_jewish",
+        "reconstructionist_jewish",
+        "secular_jewish",
+        "hindu",
+        "vaishnava",
+        "shaiva",
+        "shakta",
+        "buddhist",
+        "theravada",
+        "mahayana",
+        "vajrayana",
+        "zen",
+        "sikh",
+        "jain",
+        "bahai",
+        "shinto",
+        "taoist",
+        "confucian",
+        "zoroastrian",
+        "druze",
+        "indigenous",
+        "pagan",
+        "wiccan",
+        "rastafari",
+        "unitarian_universalist",
+        "other"
+      ]
+    },
+    "build": {
+      "type": "string",
+      "enum": [
+        "body_0",
+        "body_1",
+        "body_2",
+        "body_3",
+        "body_4"
+      ]
+    },
+    "weekday": {
+      "type": "string",
+      "enum": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "partner",
+        "romantic",
+        "father",
+        "mother",
+        "parent",
+        "stepfather",
+        "stepmother",
+        "stepparent",
+        "child",
+        "stepchild",
+        "sibling",
+        "grandparent",
+        "grandchild",
+        "cousin",
+        "aunt",
+        "uncle",
+        "niece",
+        "nephew",
+        "in_law",
+        "other_family",
+        "ex_partner",
+        "best_friend",
+        "friend",
+        "acquaintance",
+        "coworker",
+        "manager",
+        "direct_report",
+        "classmate",
+        "teacher",
+        "student",
+        "mentor",
+        "neighbor",
+        "roommate",
+        "other",
+        "averse",
+        "not_speaking"
+      ]
+    }
+  }
+}

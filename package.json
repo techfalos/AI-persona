@@ -1,0 +1,20 @@
+{
+  "name": "persona-interchange-format",
+  "version": "0.4.0",
+  "private": true,
+  "description": "An open file format for one person's life over time: who they were, the people and places in it, and who knew what.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:schema": "node tools/build-schema.mjs",
+    "validate": "node tools/validate.mjs",
+    "test": "node tools/build-schema.mjs --check && node tools/validate.mjs examples/hazel"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "fflate": "^0.8.2"
+  }
+}
